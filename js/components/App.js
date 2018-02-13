@@ -5,17 +5,18 @@ import List from '../components/List';
 class App extends Component {
   render() {
     return (
-      <div class="root">
-        <h1 class="root__header">Pie Application</h1>
+      <div className="root">
+        <h1 className="root__header">
+          Pie Application
+        </h1>
 
-        <div class="manager-container">
+        <div className="manager-container">
           <Manager />
         </div>
 
-        <div class="list-container">
+        <div className="list-container">
           <List />
         </div>
-
       </div>
     );
   }
