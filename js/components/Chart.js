@@ -1,13 +1,35 @@
 import React, { Component } from 'react';
 import google from '../vendors/google';
+import listStore from '../stores/listStore';
 
 class Chart extends Component {
   constructor(props) {
     super(props);
+
+    this.state = {
+      items: this.getAllItems()
+    };
+
+    this.onChange = this.onChange.bind(this);
+    this.mapItems = this.mapItems.bind(this);
+  }
+
+  getAllItems() {
+    let items = listStore.getAllItems();
+    items = items.map(this.mapItems);
+    return items;
+  }
+
+  mapItems(item) {
+    item = [
+      item.description,
+      item.rate
+    ];
+    return item;
   }
 
   //The content got from google example: https://developers.google.com/chart/interactive/docs/quick_start
-  componentDidMount() {
+  prepareChart() {
     // Load the Visualization API and the corechart package.
     google.charts.load('current', {'packages':['corechart']});
 
@@ -42,7 +64,23 @@ class Chart extends Component {
     }
   }
 
+  onChange() {
+    this.setState({
+      items: this.getAllItems()
+    });
+  }
+
+  componentDidMount() {
+    listStore.addChangeListener(this.onChange);
+    this.prepareChart();
+  }
+
+  componentWillUnmount() {
+    listStore.removeChangeListener(this.onChange);
+  }
+
   render() {
+    console.log('Re-render chart');
     return (
       <div
         id="chart_div"
