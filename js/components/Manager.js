@@ -33,6 +33,7 @@ class Manager extends Component {
   onSubmit(event) {
     event.preventDefault();
     managerActions.addNewItem(this.state);
+    this.descriptionInput.focus();
     this.setState({
       description: '',
       rate: ''
@@ -57,6 +58,7 @@ class Manager extends Component {
             placeholder="Description"
             autoComplete="off"
             onChange={this.onChangeDescription}
+            ref={input => this.descriptionInput = input}
           />
           <input
             type="text"
