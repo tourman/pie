@@ -10,6 +10,12 @@ class Chart extends Component {
       items: this.getAllItems()
     };
 
+    this.options = {
+      title:  'Pie chart',
+      width:  400,
+      height: 300
+    };
+
     this.onChange = this.onChange.bind(this);
     this.mapItems = this.mapItems.bind(this);
     this.drawChart = this.drawChart.bind(this);
@@ -37,13 +43,8 @@ class Chart extends Component {
 
   drawChart() {
     let data = this.getChartData();
-
-    let options = {'title':'How Much Pizza I Ate Last Night',
-                   'width':400,
-                   'height':300};
-
     this.chart = this.chart || new google.visualization.PieChart(this.chartNode);
-    this.chart.draw(data, options);
+    this.chart.draw(data, this.options);
   }
 
   getChartData() {
