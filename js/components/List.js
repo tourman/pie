@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 import listStore from '../stores/listStore';
+import listActions from '../actions/listActions';
 
 class List extends Component {
   constructor(props) {
@@ -22,6 +23,13 @@ class List extends Component {
     });
   }
 
+  onChangeRate(item) {
+    return (event) => {
+      event.preventDefault();
+      listActions.changeRate(item, event.target.value);
+    }
+  }
+
   componentDidMount() {
     listStore.addChangeListener(this.onChange);
   }
@@ -40,7 +48,17 @@ class List extends Component {
                 key={item.id}
               >
                 <div className="item">
-                  {item.description} ({item.rate})
+                  <span>
+                    {item.description}:
+                  </span>
+
+                  <input
+                    type="text"
+                    name="rate"
+                    value={item.rate}
+                    autoComplete="off"
+                    onChange={this.onChangeRate(item)}
+                  />
                 </div>
               </li>
             );

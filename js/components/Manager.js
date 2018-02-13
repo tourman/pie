@@ -55,6 +55,7 @@ class Manager extends Component {
             name="description"
             value={this.state.description}
             placeholder="Description"
+            autoComplete="off"
             onChange={this.onChangeDescription}
           />
           <input
@@ -63,6 +64,7 @@ class Manager extends Component {
             name="rate"
             value={this.state.rate}
             placeholder="Rate"
+            autoComplete="off"
             onChange={this.onChangeRate}
           />
           <button
