@@ -1,4 +1,5 @@
 import React, { Component } from 'react';
+import managerActions from '../actions/managerActions';
 
 class Manager extends Component {
   constructor(props) {
@@ -31,6 +32,7 @@ class Manager extends Component {
 
   onSubmit(event) {
     event.preventDefault();
+    managerActions.addNewItem(this.state);
     this.setState({
       description: '',
       rate: ''
