@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import Manager from '../components/Manager';
 import List from '../components/List';
+import Chart from '../components/Chart';
 
 class App extends Component {
   render() {
@@ -16,6 +17,10 @@ class App extends Component {
 
         <div className="list-container">
           <List />
+        </div>
+
+        <div className="chart-container">
+          <Chart />
         </div>
       </div>
     );
