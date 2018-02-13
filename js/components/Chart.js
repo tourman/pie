@@ -12,6 +12,7 @@ class Chart extends Component {
 
     this.onChange = this.onChange.bind(this);
     this.mapItems = this.mapItems.bind(this);
+    this.drawChart = this.drawChart.bind(this);
   }
 
   getAllItems() {
@@ -23,45 +24,34 @@ class Chart extends Component {
   mapItems(item) {
     item = [
       item.description,
-      item.rate
+      parseFloat(item.rate)
     ];
     return item;
   }
 
   //The content got from google example: https://developers.google.com/chart/interactive/docs/quick_start
   prepareChart() {
-    // Load the Visualization API and the corechart package.
     google.charts.load('current', {'packages':['corechart']});
+    google.charts.setOnLoadCallback(this.drawChart);
+  }
 
-    // Set a callback to run when the Google Visualization API is loaded.
-    google.charts.setOnLoadCallback(drawChart.bind(this));
+  drawChart() {
+    let data = this.getChartData();
 
-    // Callback that creates and populates a data table,
-    // instantiates the pie chart, passes in the data and
-    // draws it.
-    function drawChart() {
+    let options = {'title':'How Much Pizza I Ate Last Night',
+                   'width':400,
+                   'height':300};
 
-      // Create the data table.
-      var data = new google.visualization.DataTable();
-      data.addColumn('string', 'Topping');
-      data.addColumn('number', 'Slices');
-      data.addRows([
-        ['Mushrooms', 3],
-        ['Onions', 1],
-        ['Olives', 1],
-        ['Zucchini', 1],
-        ['Pepperoni', 2]
-      ]);
+    this.chart = this.chart || new google.visualization.PieChart(this.chartNode);
+    this.chart.draw(data, options);
+  }
 
-      // Set chart options
-      var options = {'title':'How Much Pizza I Ate Last Night',
-                     'width':400,
-                     'height':300};
-
-      // Instantiate and draw our chart, passing in some options.
-      var chart = new google.visualization.PieChart(this.chartNode);
-      chart.draw(data, options);
-    }
+  getChartData() {
+    let data = new google.visualization.DataTable();
+    data.addColumn('string', 'Topping');
+    data.addColumn('number', 'Slices');
+    data.addRows(this.state.items);
+    return data;
   }
 
   onChange() {
@@ -77,6 +67,10 @@ class Chart extends Component {
 
   componentWillUnmount() {
     listStore.removeChangeListener(this.onChange);
+  }
+
+  componentDidUpdate() {
+    this.drawChart();
   }
 
   render() {
