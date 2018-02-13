@@ -4,6 +4,7 @@ import ActionTypes from '../constants';
 
 const CHANGE = 'CHANGE';
 let _listState = [];
+let _counter = 0;
 
 class ListStore extends EventEmitter {
   constructor() {
@@ -19,11 +20,14 @@ class ListStore extends EventEmitter {
       case ActionTypes.CHANGE_RATE:
         this._changeRate(action);
         break;
+      case ActionTypes.REMOVE_ITEM:
+        this._removeItem(action);
+        break;
     }
   }
 
   _addNewItem({item}) {
-    item.id = _listState.length;
+    item.id = _counter++;
     item.rate = parseFloat(item.rate);
     _listState.push(item);
     this.emit(CHANGE);
@@ -31,7 +35,12 @@ class ListStore extends EventEmitter {
 
   _changeRate({item, rate}) {
     item.rate = parseFloat(rate);
-    _listState[item.id] = item;
+    this.emit(CHANGE);
+  }
+
+  _removeItem({item}) {
+    let index = _listState.indexOf(item);
+    _listState.splice(index, 1);
     this.emit(CHANGE);
   }
 

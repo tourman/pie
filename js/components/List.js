@@ -30,6 +30,13 @@ class List extends Component {
     }
   }
 
+  onRemove(item) {
+    return (event) => {
+      event.preventDefault();
+      listActions.removeItem(item);
+    }
+  }
+
   componentDidMount() {
     listStore.addChangeListener(this.onChange);
   }
@@ -59,6 +66,14 @@ class List extends Component {
                     autoComplete="off"
                     onChange={this.onChangeRate(item)}
                   />
+
+                  [<a
+                    href=""
+                    title="Remove item"
+                    onClick={this.onRemove(item)}
+                  >
+                    X
+                  </a>]
                 </div>
               </li>
             );
