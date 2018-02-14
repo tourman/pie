@@ -23,6 +23,10 @@ class App extends Component {
               Pie Application
             </h1>
 
+            <h6 className="pie-header">
+              <a href="https://github.com/tourman/pie">https://github.com/tourman/pie</a>
+            </h6>
+
             <div>
               <Manager />
             </div>
