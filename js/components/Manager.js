@@ -6,7 +6,7 @@ class Manager extends Component {
     super(props);
 
     this.state = {
-      title: 'Manager',
+      title: 'Try to add an item',
       description: '',
       rate: ''
     };
@@ -42,40 +42,64 @@ class Manager extends Component {
 
   render() {
     return (
-      <div className="manager">
-        <h3 className="manager__title">
+      <div className="panel panel-default">
+        <div className="panel-heading">
           {this.state.title}
-        </h3>
-        <form
-          className="manager__form manager-form"
-          onSubmit={this.onSubmit}
-        >
-          <input
-            type="text"
-            className="manager-form__description"
-            name="description"
-            value={this.state.description}
-            placeholder="Description"
-            autoComplete="off"
-            onChange={this.onChangeDescription}
-            ref={input => this.descriptionInput = input}
-          />
-          <input
-            type="text"
-            className="manager-form__rate"
-            name="rate"
-            value={this.state.rate}
-            placeholder="Rate"
-            autoComplete="off"
-            onChange={this.onChangeRate}
-          />
-          <button
-            type="submit"
-            className="manager-form__submit"
-          >
-            Add
-          </button>
-        </form>
+        </div>
+        <div className="panel-body pie-form-panel-body">
+          <form onSubmit={this.onSubmit}>
+            <div className="container-fluid pie-form-container">
+              <div className="row">
+                <div className="
+                    col-xs-12
+                    col-sm-5
+                    pie-form-control
+                  "
+                >
+                  <input
+                    type="text"
+                    className="form-control"
+                    name="description"
+                    value={this.state.description}
+                    placeholder="Description"
+                    autoComplete="off"
+                    onChange={this.onChangeDescription}
+                    ref={input => this.descriptionInput = input}
+                  />
+                </div>
+                <div className="
+                    col-xs-12
+                    col-sm-5
+                    pie-form-control
+                  "
+                >
+                  <input
+                    type="text"
+                    className="form-control"
+                    name="rate"
+                    value={this.state.rate}
+                    placeholder="Rate"
+                    autoComplete="off"
+                    onChange={this.onChangeRate}
+                  />
+                </div>
+                <div className="
+                    col-xs-12
+                    col-sm-2
+                    pie-form-control
+                  "
+                >
+                  <button
+                    type="submit"
+                    className="btn btn-primary btn-block"
+                  >
+                    Add
+                  </button>
+                </div>
+              </div>
+            </div>
+          </form>
+        </div>
       </div>
     );
   }

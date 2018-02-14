@@ -77,11 +77,22 @@ class Chart extends Component {
   render() {
     console.log('Re-render chart');
     return (
-      <div
-        id="chart_div"
-        ref={chartNode => this.chartNode = chartNode}
-      >
-      </div>
+      <div className="panel panel-default"><div className="panel-body pie-chart-panel">
+        <div className="row">
+          <div className="
+              col-xs-6 col-xs-offset-6
+              col-sm-8 col-sm-offset-2
+            "
+          >
+            <div
+              className="pie-chart"
+              id="chart_div"
+              ref={chartNode => this.chartNode = chartNode}
+            >
+            </div>
+          </div>
+        </div>
+      </div></div>
     );
   }
 }

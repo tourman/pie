@@ -47,34 +47,44 @@ class List extends Component {
 
   render() {
     let list = (
-      <ul className="list">
+      <ul className="pie-list list-group">
         {this.state.items.map((item) => {
+            let htmlItemName = `item.${item.id}`;
             let listItem = (
               <li
-                className="list__item"
+                className="pie-list__item list-group-item"
                 key={item.id}
               >
-                <div className="item">
-                  <span>
-                    {item.description}:
-                  </span>
+                <form className="form-horizontal">
+                  <div className="pie-item form-group">
+                    <label
+                      htmlFor={htmlItemName}
+                      className="col-xs-5 control-label"
+                    >
+                      {item.description}
+                    </label>
 
-                  <input
-                    type="text"
-                    name="rate"
-                    value={item.rate}
-                    autoComplete="off"
-                    onChange={this.onChangeRate(item)}
-                  />
+                    <div className="col-xs-5">
+                      <input
+                        className="form-control"
+                        type="text"
+                        id={htmlItemName}
+                        value={item.rate}
+                        autoComplete="off"
+                        onChange={this.onChangeRate(item)}
+                      />
+                    </div>
 
-                  [<a
-                    href=""
-                    title="Remove item"
-                    onClick={this.onRemove(item)}
-                  >
-                    X
-                  </a>]
-                </div>
+                    <div className="col-xs-2">
+                      <button
+                        className="btn btn-danger btn-block"
+                        onClick={this.onRemove(item)}
+                      >
+                        Del
+                      </button>
+                    </div>
+                  </div>
+                </form>
               </li>
             );
             return listItem;

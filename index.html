@@ -16,54 +16,11 @@
       src="https://www.gstatic.com/charts/loader.js"
     ></script>
   </head>
-  <body>
+  <body class="pie-body">
     <!--[if lte IE 9]>
       <p class="browserupgrade">You are using an <strong>outdated</strong> browser. Please <a href="http://browsehappy.com/">upgrade your browser</a> to improve your experience and security.</p>
     <![endif]-->
-    <div id="app">
-      <div class="root">
-        <h1 class="root__header">Pie Application</h1>
-
-        <div class="manager-container">
-          <div class="manager">
-            <h3 class="manager__title"></h3>
-            <form class="manager__form manager-form">
-              <input
-                type="text"
-                class="manager-form__description"
-                name="description"
-                value=""
-                placeholder="Description"
-              >
-              <input
-                type="text"
-                class="manager-form__rate"
-                name="rate"
-                value=""
-                placeholder="Rate"
-              >
-              <button
-                type="submit"
-                class="manager-form__submit"
-              >
-                Add
-              </button>
-            </form>
-          </div>
-        </div>
-
-        <div class="list-container">
-          <ul class="list">
-            <li class="list__item">
-              <div class="item">
-                Some Item (Value)
-              </div>
-            </li>
-          </ul>
-        </div>
-
-      </div>
-    </div>
+    <div id="app"></div>
     <script src="js/bundle.js"></script>
   </body>
 </html>
