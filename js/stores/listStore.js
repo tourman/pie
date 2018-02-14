@@ -3,7 +3,18 @@ import Dispatcher from '../dispatcher';
 import ActionTypes from '../constants';
 
 const CHANGE = 'CHANGE';
-let _listState = [];
+let _listState = [
+  {
+    id: 'default.blue',
+    description: 'Blue rate',
+    rate: 10
+  },
+  {
+    id: 'default.red',
+    description: 'Red rate',
+    rate: 20
+  }
+];
 let _counter = 0;
 
 class ListStore extends EventEmitter {
