@@ -1,5 +1,7 @@
 import React, { Component } from 'react';
 import managerActions from '../actions/managerActions';
+import Button from './Manager/Button';
+import BootstrapGrid from './BootstrapGrid';
 
 class Manager extends Component {
   constructor(props) {
@@ -83,19 +85,10 @@ class Manager extends Component {
                     onChange={this.onChangeRate}
                   />
                 </div>
-                <div className="
-                    col-xs-12
-                    col-sm-2
-                    pie-form-control
-                  "
-                >
-                  <button
-                    type="submit"
-                    className="btn btn-primary btn-block"
-                  >
-                    Add
-                  </button>
-                </div>
+                <Button
+                  xs="************"
+                  sm="          **"
+                />
               </div>
             </div>
           </form>
