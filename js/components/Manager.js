@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import managerActions from '../actions/managerActions';
 import Button from './Manager/Button';
+import RateInput from './Manager/RateInput';
 import BootstrapGrid from './BootstrapGrid';
 
 class Manager extends Component {
@@ -69,22 +70,12 @@ class Manager extends Component {
                     ref={input => this.descriptionInput = input}
                   />
                 </div>
-                <div className="
-                    col-xs-12
-                    col-sm-5
-                    pie-form-control
-                  "
-                >
-                  <input
-                    type="text"
-                    className="form-control"
-                    name="rate"
-                    value={this.state.rate}
-                    placeholder="Rate"
-                    autoComplete="off"
-                    onChange={this.onChangeRate}
-                  />
-                </div>
+                <RateInput
+                  xs="************"
+                  sm="     *****  "
+                  value={this.state.rate}
+                  onChange={this.onChangeRate}
+                />
                 <Button
                   xs="************"
                   sm="          **"
