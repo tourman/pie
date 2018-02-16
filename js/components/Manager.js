@@ -2,6 +2,7 @@ import React, { Component } from 'react';
 import managerActions from '../actions/managerActions';
 import Button from './Manager/Button';
 import RateInput from './Manager/RateInput';
+import DescriptionInput from './Manager/DescriptionInput';
 import BootstrapGrid from './BootstrapGrid';
 
 class Manager extends Component {
@@ -53,23 +54,13 @@ class Manager extends Component {
           <form onSubmit={this.onSubmit}>
             <div className="container-fluid pie-form-container">
               <div className="row">
-                <div className="
-                    col-xs-12
-                    col-sm-5
-                    pie-form-control
-                  "
-                >
-                  <input
-                    type="text"
-                    className="form-control"
-                    name="description"
-                    value={this.state.description}
-                    placeholder="Description"
-                    autoComplete="off"
-                    onChange={this.onChangeDescription}
-                    ref={input => this.descriptionInput = input}
-                  />
-                </div>
+                <DescriptionInput
+                  xs="************"
+                  sm="*****       "
+                  value={this.state.description}
+                  onChange={this.onChangeDescription}
+                  inputRef={input => this.descriptionInput = input}
+                />
                 <RateInput
                   xs="************"
                   sm="     *****  "
