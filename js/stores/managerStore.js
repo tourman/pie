@@ -1,12 +1,10 @@
-import { EventEmitter } from 'events';
+import emitter from '../utils/emitter';
 import dispatcher from '../dispatcher';
 import ActionTypes from '../constants';
 
-const CHANGE = 'CHANGE';
-
 class ManagerStore {
   constructor() {
-    this.emitter = new EventEmitter();
+    this.emitter = emitter;
 
     this.attrs = {
       rate: ''
@@ -31,15 +29,15 @@ class ManagerStore {
   changeRate({rate}) {
     rate = this.sanitizeRate(rate);
     this.attrs.rate = rate;
-    this.emitter.emit(CHANGE, {rate});
+    this.emitter.emit({rate});
   }
 
   on(callback) {
-    this.emitter.addListener(CHANGE, callback);
+    this.emitter.addListener(callback);
   }
 
   off(callback) {
-    this.emitter.removeListener(CHANGE, callback);
+    this.emitter.removeListener(callback);
   }
 }
 
