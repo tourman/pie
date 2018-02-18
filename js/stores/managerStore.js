@@ -7,6 +7,7 @@ class ManagerStore {
     this.emitter = emitter;
 
     this.attrs = {
+      description: '',
       rate: ''
     };
 
@@ -30,6 +31,11 @@ class ManagerStore {
     rate = this.sanitizeRate(rate);
     this.attrs.rate = rate;
     this.emitter.emit({rate});
+  }
+
+  changeDescription({description}) {
+    this.attrs.description = description;
+    this.emitter.emit({description});
   }
 
   on(callback) {

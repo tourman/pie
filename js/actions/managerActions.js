@@ -15,6 +15,13 @@ class ManagerActions {
       data: {rate}
     });
   }
+
+  changeDescription(description) {
+    Dispatcher.dispatch({
+      type: ActionTypes.changeDescription,
+      data: {description}
+    });
+  }
 }
 
 export default new ManagerActions();

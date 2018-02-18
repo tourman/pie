@@ -24,9 +24,7 @@ class Manager extends Component {
 
   onChangeDescription(event) {
     event.preventDefault();
-    this.setState({
-      description: event.target.value
-    });
+    managerActions.changeDescription(event.target.value);
   }
 
   onChangeRate(event) {
