@@ -8,6 +8,13 @@ class ManagerActions {
       item
     });
   }
+
+  changeRate(rate) {
+    Dispatcher.dispatch({
+      type: ActionTypes.changeRate,
+      data: {rate}
+    });
+  }
 }
 
 export default new ManagerActions();

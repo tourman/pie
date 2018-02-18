@@ -4,6 +4,7 @@ import Button from './Manager/Button';
 import RateInput from './Manager/RateInput';
 import DescriptionInput from './Manager/DescriptionInput';
 import BootstrapGrid from './BootstrapGrid';
+import managerStore from '../stores/managerStore';
 
 class Manager extends Component {
   constructor(props) {
@@ -18,6 +19,7 @@ class Manager extends Component {
     this.onChangeDescription = this.onChangeDescription.bind(this);
     this.onChangeRate = this.onChangeRate.bind(this);
     this.onSubmit = this.onSubmit.bind(this);
+    this.setState = this.setState.bind(this);
   }
 
   onChangeDescription(event) {
@@ -29,9 +31,15 @@ class Manager extends Component {
 
   onChangeRate(event) {
     event.preventDefault();
-    this.setState({
-      rate: event.target.value
-    });
+    managerActions.changeRate(event.target.value);
+  }
+
+  componentDidMount() {
+    managerStore.on(this.setState);
+  }
+
+  componentWillUnmount() {
+    managerStore.off(this.setState);
   }
 
   onSubmit(event) {
