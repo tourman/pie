@@ -1,6 +1,7 @@
 import emitter from '../utils/emitter';
 import dispatcher from '../dispatcher';
 import ActionTypes from '../constants';
+import mapObject from 'object.map';
 
 class ManagerStore {
   constructor() {
@@ -12,6 +13,7 @@ class ManagerStore {
     };
 
     this.act = this.act.bind(this);
+    this.set = this.set.bind(this);
 
     this.dispatcher = dispatcher;
     this.dispatcher.register(this.act);
@@ -27,15 +29,25 @@ class ManagerStore {
     return rate;
   }
 
-  changeRate({rate}) {
-    rate = this.sanitizeRate(rate);
-    this.attrs.rate = rate;
-    this.emitter.emit({rate});
+  changeItem({item}) {
+    item = mapObject(item, this.set);
+    this.emitter.emit(item);
   }
 
-  changeDescription({description}) {
+  set(value, key) {
+    value = this[`set.${key}`](value);
+    return value;
+  }
+
+  'set.rate'(rate) {
+    rate = this.sanitizeRate(rate);
+    this.attrs.rate = rate;
+    return rate;
+  }
+
+  'set.description'(description) {
     this.attrs.description = description;
-    this.emitter.emit({description});
+    return description;
   }
 
   on(callback) {

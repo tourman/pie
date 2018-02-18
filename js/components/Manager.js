@@ -24,12 +24,16 @@ class Manager extends Component {
 
   onChangeDescription(event) {
     event.preventDefault();
-    managerActions.changeDescription(event.target.value);
+    managerActions.changeItem({
+      description: event.target.value
+    });
   }
 
   onChangeRate(event) {
     event.preventDefault();
-    managerActions.changeRate(event.target.value);
+    managerActions.changeItem({
+      rate: event.target.value
+    });
   }
 
   componentDidMount() {

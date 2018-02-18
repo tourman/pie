@@ -9,17 +9,10 @@ class ManagerActions {
     });
   }
 
-  changeRate(rate) {
+  changeItem(item) {
     Dispatcher.dispatch({
-      type: ActionTypes.changeRate,
-      data: {rate}
-    });
-  }
-
-  changeDescription(description) {
-    Dispatcher.dispatch({
-      type: ActionTypes.changeDescription,
-      data: {description}
+      type: ActionTypes.changeItem,
+      data: {item}
     });
   }
 }
