@@ -2,6 +2,7 @@ import emitter from '../utils/emitter';
 import dispatcher from '../dispatcher';
 import ActionTypes from '../constants';
 import mapObject from 'object.map';
+import autoBind from '../utils/autobind';
 
 class ManagerStore {
   constructor() {
@@ -12,8 +13,10 @@ class ManagerStore {
       rate: ''
     };
 
-    this.act = this.act.bind(this);
-    this.set = this.set.bind(this);
+    autoBind(this, [
+      'act',
+      'set'
+    ]);
 
     this.dispatcher = dispatcher;
     this.dispatcher.register(this.act);

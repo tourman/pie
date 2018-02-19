@@ -5,6 +5,7 @@ import RateInput from './Manager/RateInput';
 import DescriptionInput from './Manager/DescriptionInput';
 import BootstrapGrid from './BootstrapGrid';
 import managerStore from '../stores/managerStore';
+import autoBind from '../utils/autobind';
 
 class Manager extends Component {
   constructor(props) {
@@ -16,10 +17,12 @@ class Manager extends Component {
       rate: ''
     };
 
-    this.onChangeDescription = this.onChangeDescription.bind(this);
-    this.onChangeRate = this.onChangeRate.bind(this);
-    this.onSubmit = this.onSubmit.bind(this);
-    this.setState = this.setState.bind(this);
+    autoBind(this, [
+      'onChangeDescription',
+      'onChangeRate',
+      'onSubmit',
+      'setState'
+    ]);
   }
 
   onChangeDescription(event) {
