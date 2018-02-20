@@ -1,17 +1,17 @@
 import mapObject from 'object.map';
 
 class ManagerState {
-  constructor() {
-    this.states = [];
-    this.reset();
-  }
-
-  default() {
-    return {
+  constructor(
+    defaults = {
       title       : 'Try to add an item',
       description : '',
-      rate        : ''
+      rate        : '',
+      blocked     : true
     }
+  ) {
+    this.defaults = defaults;
+    this.states = [];
+    this.reset();
   }
 
   set(state) {
@@ -25,7 +25,7 @@ class ManagerState {
   }
 
   reset() {
-    this.state = this.default();
+    this.state = this.defaults;
     this.state = this.set(this.state);
     return this.state;
   }
