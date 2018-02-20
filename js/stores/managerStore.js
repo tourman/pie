@@ -17,6 +17,10 @@ class ManagerStore {
     this.dispatcher.register(this.act);
   }
 
+  getState() {
+    return this.state.get();
+  }
+
   act(action) {
     let act = this[action.type] || (() => {});
     act.call(this, action.data);

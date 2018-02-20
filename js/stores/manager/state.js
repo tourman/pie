@@ -8,21 +8,26 @@ class ManagerState {
 
   default() {
     return {
-      description: '',
-      rate: ''
+      title       : 'Try to add an item',
+      description : '',
+      rate        : ''
     }
   }
 
   set(state) {
-    state = this.sanitize(state);
-    state = this.push(state)
-    return state;
+    this.state = this.sanitize(state);
+    this.state = this.push(this.state)
+    return this.state;
+  }
+
+  get() {
+    return this.state;
   }
 
   reset() {
-    let state = this.default();
-    state = this.set(state);
-    return state;
+    this.state = this.default();
+    this.state = this.set(this.state);
+    return this.state;
   }
 
   push(state) {

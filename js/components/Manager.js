@@ -11,11 +11,7 @@ class Manager extends Component {
   constructor(props) {
     super(props);
 
-    this.state = {
-      title: 'Try to add an item',
-      description: '',
-      rate: ''
-    };
+    this.state = managerStore.getState();
 
     autoBind(this, [
       'onChangeDescription',
