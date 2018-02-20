@@ -17,6 +17,7 @@ export default (props) => {
           'btn-primary',
           'btn-block'
         ])}
+        disabled={props.disabled}
       >
         Add
       </button>

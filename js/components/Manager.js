@@ -72,6 +72,7 @@ class Manager extends Component {
                 <Button
                   xs="************"
                   sm="          **"
+                  disabled={this.state.blocked}
                 />
               </div>
             </div>
