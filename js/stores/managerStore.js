@@ -1,44 +1,29 @@
-import emitter from '../utils/emitter';
+import Store from '../utils/Store';
 import dispatcher from '../dispatcher';
-import ActionTypes from '../constants';
-import autoBind from '../utils/autobind';
-import State from './manager/State';
-import actions from './manager/actions';
 
-class ManagerStore {
-  constructor() {
-    this.emitter = emitter;
-    this.state = new State({
+class ManagerStore extends Store {
+  getInitialState() {
+    return Object.freeze({
       title       : 'Try to add an item',
       description : '',
       rate        : '',
       blocked     : true
     });
-
-    autoBind(this, [
-      'act'
-    ]);
-
-    this.dispatcher = dispatcher;
-    this.dispatcher.register(this.act);
   }
 
-  getState() {
-    return this.state.get();
+  'act.changeItem'(startingState, {item}) {
+    const endingState = Object.assign({}, startingState, item);
+    endingState.rate = endingState.rate.replace(/\D/g, '');
+    return endingState;
   }
 
-  act(action) {
-    let act = actions[action.type] || (() => {});
-    act.call(this, action.data);
-  }
-
-  on(callback) {
-    this.emitter.addListener(callback);
-  }
-
-  off(callback) {
-    this.emitter.removeListener(callback);
+  'act.resetItem'(startingState) {
+    const endingState = Object.assign({}, startingState, {
+      description : '',
+      rate        : ''
+    });
+    return endingState;
   }
 }
 
-export default new ManagerStore();
+export default new ManagerStore(dispatcher);

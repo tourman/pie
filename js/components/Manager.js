@@ -36,11 +36,7 @@ class Manager extends Component {
   }
 
   componentDidMount() {
-    managerStore.on(this.setState);
-  }
-
-  componentWillUnmount() {
-    managerStore.off(this.setState);
+    managerStore.addListener(this.setState);
   }
 
   onSubmit(event) {
