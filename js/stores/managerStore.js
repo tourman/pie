@@ -3,6 +3,7 @@ import dispatcher from '../dispatcher';
 import ActionTypes from '../constants';
 import autoBind from '../utils/autobind';
 import state from './manager/state';
+import actions from './manager/actions';
 
 class ManagerStore {
   constructor() {
@@ -22,18 +23,8 @@ class ManagerStore {
   }
 
   act(action) {
-    let act = this[action.type] || (() => {});
+    let act = actions[action.type] || (() => {});
     act.call(this, action.data);
-  }
-
-  changeItem({item}) {
-    const state = this.state.set(item);
-    this.emitter.emit(state);
-  }
-
-  resetItem() {
-    const state = this.state.reset();
-    this.emitter.emit(state);
   }
 
   on(callback) {
