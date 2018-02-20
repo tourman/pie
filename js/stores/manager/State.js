@@ -44,4 +44,4 @@ class ManagerState {
   }
 }
 
-export default new ManagerState();
+export default ManagerState;

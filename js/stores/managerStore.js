@@ -2,13 +2,18 @@ import emitter from '../utils/emitter';
 import dispatcher from '../dispatcher';
 import ActionTypes from '../constants';
 import autoBind from '../utils/autobind';
-import state from './manager/state';
+import State from './manager/State';
 import actions from './manager/actions';
 
 class ManagerStore {
   constructor() {
     this.emitter = emitter;
-    this.state = state;
+    this.state = new State({
+      title       : 'Try to add an item',
+      description : '',
+      rate        : '',
+      blocked     : true
+    });
 
     autoBind(this, [
       'act'
