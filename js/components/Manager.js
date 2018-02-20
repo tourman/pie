@@ -51,10 +51,7 @@ class Manager extends Component {
     event.preventDefault();
     managerActions.addNewItem(this.state);
     this.descriptionInput.focus();
-    managerActions.changeItem({
-      description: '',
-      rate: ''
-    });
+    managerActions.resetItem();
   }
 
   render() {

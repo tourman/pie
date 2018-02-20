@@ -2,15 +2,31 @@ import mapObject from 'object.map';
 
 class ManagerState {
   constructor() {
-    this.states = [Object.freeze({
+    this.states = [];
+    this.reset();
+  }
+
+  default() {
+    return {
       description: '',
       rate: ''
-    })];
+    }
   }
 
   set(state) {
     state = this.sanitize(state);
-    state = Object.freeze(state)
+    state = this.push(state)
+    return state;
+  }
+
+  reset() {
+    let state = this.default();
+    state = this.set(state);
+    return state;
+  }
+
+  push(state) {
+    state = Object.freeze(state);
     this.states.push(state);
     return state;
   }

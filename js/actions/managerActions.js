@@ -15,6 +15,12 @@ class ManagerActions {
       data: {item}
     });
   }
+
+  resetItem() {
+    Dispatcher.dispatch({
+      type: ActionTypes.resetItem
+    });
+  }
 }
 
 export default new ManagerActions();

@@ -27,6 +27,11 @@ class ManagerStore {
     this.emitter.emit(state);
   }
 
+  resetItem() {
+    const state = this.state.reset();
+    this.emitter.emit(state);
+  }
+
   on(callback) {
     this.emitter.addListener(callback);
   }
