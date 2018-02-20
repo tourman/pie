@@ -1,6 +1,7 @@
 import { EventEmitter } from 'events';
 import Dispatcher from '../dispatcher';
 import ActionTypes from '../constants';
+import managerStore from './managerStore';
 
 const CHANGE = 'CHANGE';
 let _listState = [
@@ -37,7 +38,13 @@ class ListStore extends EventEmitter {
     }
   }
 
-  _addNewItem({item}) {
+  _getNewItem() {
+    const frozenItem = managerStore.getState();
+    const item = Object.assign({}, frozenItem);
+    return item;
+  }
+
+  _addNewItem({item = this._getNewItem()}) {
     item.id = _counter++;
     item.rate = parseFloat(item.rate);
     _listState.push(item);

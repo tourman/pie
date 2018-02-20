@@ -41,7 +41,7 @@ class Manager extends Component {
 
   onSubmit(event) {
     event.preventDefault();
-    managerActions.addNewItem(this.state);
+    managerActions.addNewItem();
     this.descriptionInput.focus();
     managerActions.resetItem();
   }
