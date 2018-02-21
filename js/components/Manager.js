@@ -4,23 +4,22 @@ import Button from './Manager/Button';
 import RateInput from './Manager/RateInput';
 import DescriptionInput from './Manager/DescriptionInput';
 import managerStore from '../stores/managerStore';
-import autoBind from '../utils/autobind';
 import { Col } from 'react-bootstrap';
+import autobind from 'autobind-decorator';
 
 class Manager extends Component {
   constructor(props) {
     super(props);
 
     this.state = managerStore.getState();
-
-    autoBind(this, [
-      'onChangeDescription',
-      'onChangeRate',
-      'onSubmit',
-      'setState'
-    ]);
   }
 
+  @autobind
+  setState(...args) {
+    return super.setState(...args);
+  }
+
+  @autobind
   onChangeDescription(event) {
     event.preventDefault();
     managerActions.changeItem({
@@ -28,6 +27,7 @@ class Manager extends Component {
     });
   }
 
+  @autobind
   onChangeRate(event) {
     event.preventDefault();
     managerActions.changeItem({
@@ -39,6 +39,7 @@ class Manager extends Component {
     managerStore.addListener(this.setState);
   }
 
+  @autobind
   onSubmit(event) {
     event.preventDefault();
     managerActions.addNewItem();

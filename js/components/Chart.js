@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import google from '../vendors/google';
 import listStore from '../stores/listStore';
+import autobind from 'autobind-decorator';
 
 class Chart extends Component {
   constructor(props) {
@@ -15,10 +16,6 @@ class Chart extends Component {
       width:  400,
       height: 300
     };
-
-    this.onChange = this.onChange.bind(this);
-    this.mapItems = this.mapItems.bind(this);
-    this.drawChart = this.drawChart.bind(this);
   }
 
   getAllItems() {
@@ -27,6 +24,7 @@ class Chart extends Component {
     return items;
   }
 
+  @autobind
   mapItems(item) {
     item = [
       item.description,
@@ -41,6 +39,7 @@ class Chart extends Component {
     google.charts.setOnLoadCallback(this.drawChart);
   }
 
+  @autobind
   drawChart() {
     let data = this.getChartData();
     this.chart = this.chart || new google.visualization.PieChart(this.chartNode);
@@ -55,6 +54,7 @@ class Chart extends Component {
     return data;
   }
 
+  @autobind
   onChange() {
     this.setState({
       items: this.getAllItems()

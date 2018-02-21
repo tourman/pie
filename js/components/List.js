@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import listStore from '../stores/listStore';
 import listActions from '../actions/listActions';
+import autobind from 'autobind-decorator';
 
 class List extends Component {
   constructor(props) {
@@ -9,14 +10,13 @@ class List extends Component {
     this.state = {
       items: this.getAllItems()
     };
-
-    this.onChange = this.onChange.bind(this);
   }
 
   getAllItems() {
     return listStore.getAllItems();
   }
 
+  @autobind
   onChange() {
     this.setState({
       items: this.getAllItems()

@@ -2,6 +2,7 @@ import { EventEmitter } from 'events';
 import Dispatcher from '../dispatcher';
 import ActionTypes from '../constants';
 import managerStore from './managerStore';
+import autobind from 'autobind-decorator';
 
 const CHANGE = 'CHANGE';
 let _listState = [
@@ -21,9 +22,10 @@ let _counter = 0;
 class ListStore extends EventEmitter {
   constructor() {
     super();
-    Dispatcher.register(this._registerToActions.bind(this));
+    Dispatcher.register(this._registerToActions);
   }
 
+  @autobind
   _registerToActions(action) {
     switch(action.actionType) {
       case ActionTypes.ADD_NEW_ITEM:
