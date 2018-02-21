@@ -84,8 +84,6 @@ class Manager extends Component {
                   sm={2}
                 >
                   <Button
-                    xs="************"
-                    sm="          **"
                     disabled={this.state.blocked}
                   />
                 </Col>
