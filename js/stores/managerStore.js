@@ -13,11 +13,10 @@ class ManagerStore extends Store {
     });
   }
 
-  reduce(startingState, action) {
-    let endingState = super.reduce(startingState, action);
+  afterReduce(startingState, action) {
+    let endingState = startingState;
     endingState = this.setBlocked(endingState);
     endingState = this.setValid(endingState);
-    Object.freeze(endingState);
     return endingState;
   }
 
