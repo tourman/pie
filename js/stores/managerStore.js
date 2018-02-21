@@ -22,7 +22,7 @@ class ManagerStore extends Store {
 
   setBlocked(state) {
     const blocked = this.isBlocked(state);
-    const endingState = Object.assign({}, state, {
+    const endingState = this.extend(state, {
       blocked
     });
     return endingState;
@@ -38,7 +38,7 @@ class ManagerStore extends Store {
 
   setValid(state) {
     const valid = this.isValid(state);
-    const endingState = Object.assign({}, state, {
+    const endingState = this.extend(state, {
       valid
     });
     return endingState;
@@ -54,14 +54,14 @@ class ManagerStore extends Store {
 
   @autobind
   'act.changeItem'(startingState, {item}) {
-    const endingState = Object.assign({}, startingState, item);
+    const endingState = this.extend(startingState, item);
     //endingState.rate = endingState.rate.replace(/\D/g, '');
     return endingState;
   }
 
   @autobind
   'act.resetItem'(startingState) {
-    const endingState = Object.assign({}, startingState, {
+    const endingState = this.extend(startingState, {
       description : '',
       rate        : ''
     });

@@ -18,6 +18,11 @@ class Store extends ReduceStore {
     return startingState;
   }
 
+  extend(startingState, ...extensions) {
+    const endingState = Object.assign({}, startingState, ...extensions);
+    return endingState;
+  }
+
   getAct(type) {
     const key = `act.${type}`;
     let act = this[key] || (() => {});
