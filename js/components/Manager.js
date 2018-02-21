@@ -6,6 +6,7 @@ import DescriptionInput from './Manager/DescriptionInput';
 import BootstrapGrid from './BootstrapGrid';
 import managerStore from '../stores/managerStore';
 import autoBind from '../utils/autobind';
+import { Col } from 'react-bootstrap';
 
 class Manager extends Component {
   constructor(props) {
@@ -56,24 +57,38 @@ class Manager extends Component {
           <form onSubmit={this.onSubmit}>
             <div className="container-fluid pie-form-container">
               <div className="row">
-                <DescriptionInput
-                  xs="************"
-                  sm="*****       "
-                  value={this.state.description}
-                  onChange={this.onChangeDescription}
-                  inputRef={input => this.descriptionInput = input}
-                />
-                <RateInput
-                  xs="************"
-                  sm="     *****  "
-                  value={this.state.rate}
-                  onChange={this.onChangeRate}
-                />
-                <Button
-                  xs="************"
-                  sm="          **"
-                  disabled={this.state.blocked}
-                />
+                <Col
+                  className="pie-form-control"
+                  xs={12}
+                  sm={5}
+                >
+                  <DescriptionInput
+                    value={this.state.description}
+                    onChange={this.onChangeDescription}
+                    inputRef={input => this.descriptionInput = input}
+                  />
+                </Col>
+                <Col
+                  className="pie-form-control"
+                  xs={12}
+                  sm={5}
+                >
+                  <RateInput
+                    value={this.state.rate}
+                    onChange={this.onChangeRate}
+                  />
+                </Col>
+                <Col
+                  className="pie-form-control"
+                  xs={12}
+                  sm={2}
+                >
+                  <Button
+                    xs="************"
+                    sm="          **"
+                    disabled={this.state.blocked}
+                  />
+                </Col>
               </div>
             </div>
           </form>
