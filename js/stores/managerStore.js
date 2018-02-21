@@ -7,13 +7,15 @@ class ManagerStore extends Store {
       title       : 'Try to add an item',
       description : '',
       rate        : '',
+      valid       : true,
       blocked     : true
     });
   }
 
   reduce(startingState, action) {
-    const state = super.reduce(startingState, action);
-    let endingState = this.setBlocked(state);
+    let endingState = super.reduce(startingState, action);
+    endingState = this.setBlocked(endingState);
+    endingState = this.setValid(endingState);
     Object.freeze(endingState);
     return endingState;
   }
@@ -29,13 +31,30 @@ class ManagerStore extends Store {
   isBlocked(state) {
     const emptyDescription = !state.description.length;
     const emptyRate = !state.rate.length;
-    const isBlocked = emptyDescription || emptyRate;
-    return isBlocked;
+    const invalid = !this.isValid(state);
+    const blocked = emptyDescription || emptyRate || invalid;
+    return blocked;
+  }
+
+  setValid(state) {
+    const valid = this.isValid(state);
+    const endingState = Object.assign({}, state, {
+      valid
+    });
+    return endingState;
+  }
+
+  /**
+   * See unit tests: https://regex101.com/r/1yQnCf/1
+   */
+  isValid(state) {
+    const valid = state.rate.match(/^(0?|[1-9]\d*)$/);
+    return valid;
   }
 
   'act.changeItem'(startingState, {item}) {
     const endingState = Object.assign({}, startingState, item);
-    endingState.rate = endingState.rate.replace(/\D/g, '');
+    //endingState.rate = endingState.rate.replace(/\D/g, '');
     return endingState;
   }
 

@@ -76,6 +76,7 @@ class Manager extends Component {
                   <RateInput
                     value={this.state.rate}
                     onChange={this.onChangeRate}
+                    valid={this.state.valid}
                   />
                 </Col>
                 <Col
