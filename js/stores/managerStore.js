@@ -1,5 +1,6 @@
 import Store from '../utils/Store';
 import dispatcher from '../dispatcher';
+import autobind from 'autobind-decorator';
 
 class ManagerStore extends Store {
   getInitialState() {
@@ -52,12 +53,14 @@ class ManagerStore extends Store {
     return valid;
   }
 
+  @autobind
   'act.changeItem'(startingState, {item}) {
     const endingState = Object.assign({}, startingState, item);
     //endingState.rate = endingState.rate.replace(/\D/g, '');
     return endingState;
   }
 
+  @autobind
   'act.resetItem'(startingState) {
     const endingState = Object.assign({}, startingState, {
       description : '',
