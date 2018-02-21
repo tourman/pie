@@ -1,18 +1,16 @@
 import React from 'react';
 import classNames from 'classnames';
+import { Button } from 'react-bootstrap';
 
 export default (props) => {
   return (
-    <button
+    <Button
       type="submit"
-      className={classNames([
-        'btn',
-        'btn-primary',
-        'btn-block'
-      ])}
+      bsStyle="primary"
+      block
       disabled={props.disabled}
     >
       Add
-    </button>
+    </Button>
   )
 }
