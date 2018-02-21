@@ -3,7 +3,6 @@ import managerActions from '../actions/managerActions';
 import Button from './Manager/Button';
 import RateInput from './Manager/RateInput';
 import DescriptionInput from './Manager/DescriptionInput';
-import BootstrapGrid from './BootstrapGrid';
 import managerStore from '../stores/managerStore';
 import autoBind from '../utils/autobind';
 import { Col } from 'react-bootstrap';
