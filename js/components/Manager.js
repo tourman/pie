@@ -2,7 +2,7 @@ import React, { Component } from 'react';
 import managerActions from '../actions/managerActions';
 import Button from './Manager/Button';
 import RateInput from './Manager/RateInput';
-import DescriptionInput from './Manager/DescriptionInput';
+import DescriptionInputWithFocus from './Manager/DescriptionInputWithFocus';
 import managerStore from '../stores/managerStore';
 import { Col } from 'react-bootstrap';
 import autobind from 'autobind-decorator';
@@ -46,6 +46,16 @@ class Manager extends Component {
     managerActions.resetItem();
   }
 
+  @autobind
+  onFocusDescription() {
+    managerActions.focusItem();
+  }
+
+  @autobind
+  onBlurDescription() {
+    managerActions.blurItem();
+  }
+
   render() {
     return (
       <div className="panel panel-default">
@@ -61,10 +71,12 @@ class Manager extends Component {
                   xs={12}
                   sm={5}
                 >
-                  <DescriptionInput
+                  <DescriptionInputWithFocus
                     value={this.state.description}
-                    onChange={this.onChangeDescription}
                     focus={this.state.focus}
+                    onChange={this.onChangeDescription}
+                    onFocus={this.onFocusDescription}
+                    onBlur={this.onBlurDescription}
                   />
                 </Col>
                 <Col

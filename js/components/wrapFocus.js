@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import autobind from 'autobind-decorator';
 
-export default function wrapFocus(WrappedComponent, {onFocus, onBlur}) {
+export default function wrapFocus(WrappedComponent, {onFocus, onBlur} = {}) {
   return class Focus extends Component {
     componentDidUpdate(prevProps) {
       this.focusOrBlur(prevProps);
@@ -32,6 +32,7 @@ export default function wrapFocus(WrappedComponent, {onFocus, onBlur}) {
 
     @autobind
     onFocus() {
+      onFocus = onFocus || this.props.onFocus;
       if (!this.props.focus) {
         onFocus();
       }
@@ -39,6 +40,7 @@ export default function wrapFocus(WrappedComponent, {onFocus, onBlur}) {
 
     @autobind
     onBlur() {
+      onBlur = onBlur || this.props.onBlur;
       if (this.props.focus) {
         onBlur();
       }
