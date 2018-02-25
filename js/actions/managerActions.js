@@ -21,6 +21,18 @@ class ManagerActions {
       type: ActionTypes.resetItem
     });
   }
+
+  focusItem() {
+    Dispatcher.dispatch({
+      type: ActionTypes.focusItem
+    });
+  }
+
+  blurItem() {
+    Dispatcher.dispatch({
+      type: ActionTypes.blurItem
+    });
+  }
 }
 
 export default new ManagerActions();

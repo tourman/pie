@@ -43,7 +43,6 @@ class Manager extends Component {
   onSubmit(event) {
     event.preventDefault();
     managerActions.addNewItem();
-    this.descriptionInput.focus();
     managerActions.resetItem();
   }
 
@@ -65,7 +64,7 @@ class Manager extends Component {
                   <DescriptionInput
                     value={this.state.description}
                     onChange={this.onChangeDescription}
-                    inputRef={input => this.descriptionInput = input}
+                    focus={this.state.focus}
                   />
                 </Col>
                 <Col

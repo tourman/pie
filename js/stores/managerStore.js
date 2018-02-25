@@ -9,6 +9,7 @@ class ManagerStore extends Store {
       description : '',
       rate        : '',
       valid       : true,
+      focus       : true,
       blocked     : true
     });
   }
@@ -62,8 +63,25 @@ class ManagerStore extends Store {
   @autobind
   'act.resetItem'(startingState) {
     const endingState = this.extend(startingState, {
+      focus       : true,
       description : '',
       rate        : ''
+    });
+    return endingState;
+  }
+
+  @autobind
+  'act.focusItem'(startingState) {
+    const endingState = this.extend(startingState, {
+      focus       : true
+    });
+    return endingState;
+  }
+
+  @autobind
+  'act.blurItem'(startingState) {
+    const endingState = this.extend(startingState, {
+      focus       : false
     });
     return endingState;
   }
