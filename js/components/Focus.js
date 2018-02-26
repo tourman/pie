@@ -2,9 +2,8 @@ import React, { Component } from 'react';
 import autobind from 'autobind-decorator';
 
 class Focus extends Component {
-  constructor(WrappedComponent, props) {
+  constructor(props) {
     super(props);
-    this.WrappedComponent = WrappedComponent;
   }
 
   componentDidUpdate(prevProps) {
@@ -50,7 +49,7 @@ class Focus extends Component {
 
   render() {
     return (
-      <this.WrappedComponent
+      <this.props.wrappedComponent
         {...this.props}
         onFocus={this.onFocus}
         onBlur={this.onBlur}
