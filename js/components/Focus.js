@@ -15,14 +15,24 @@ class Focus extends Component {
   }
 
   focusOrBlur(prevProps = {}) {
-    const focus = !prevProps.focus && this.props.focus;
-    const blur = prevProps.focus && !this.props.focus;
+    const focus = this.isFocus();
+    const blur = this.isBlur()
     if (focus) {
       this.focus();
     }
     if (blur) {
       this.blur();
     }
+  }
+
+  isFocus(prevProps = {}) {
+    const focus = !prevProps.focus && this.props.focus;
+    return focus;
+  }
+
+  isBlur(prevProps = {}) {
+    const blur = prevProps.focus && !this.props.focus;
+    return blur;
   }
 
   focus() {
