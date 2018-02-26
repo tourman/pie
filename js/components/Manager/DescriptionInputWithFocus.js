@@ -1,8 +1,12 @@
-import wrapFocus from '../wrapFocus';
+import React, { Component } from 'react';
+import Focus from '../Focus';
 import DescriptionInput from './DescriptionInput';
 
-const DescriptionInputWithFocus = wrapFocus(
-  DescriptionInput
-);
-
-export default DescriptionInputWithFocus;
+export default function DescriptionInputWithFocus(props) {
+  return (
+    <Focus
+      {...props}
+      wrappedComponent={DescriptionInput}
+    />
+  );
+};
