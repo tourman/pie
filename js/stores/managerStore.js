@@ -1,6 +1,7 @@
 import Store from '../utils/Store';
 import dispatcher from '../dispatcher';
 import autobind from 'autobind-decorator';
+import utils from '../utils/common';
 
 class ManagerStore extends Store {
   getInitialState() {
@@ -47,11 +48,8 @@ class ManagerStore extends Store {
     return endingState;
   }
 
-  /**
-   * See unit tests: https://regex101.com/r/1yQnCf/1
-   */
   isValid(state) {
-    const valid = state.rate.match(/^(0?|[1-9]\d*)$/);
+    const valid = utils.isStringAPositiveIntegerOrZero(state.rate);
     return valid;
   }
 
