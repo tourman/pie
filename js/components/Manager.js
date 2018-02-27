@@ -57,6 +57,7 @@ class Manager extends Component {
   }
 
   render() {
+    const Row = gridFactory.createRow();
     const Col = gridFactory.createCol();
     return (
       <div className="panel panel-default">
@@ -66,7 +67,7 @@ class Manager extends Component {
         <div className="panel-body pie-form-panel-body">
           <form onSubmit={this.onSubmit}>
             <div className="container-fluid pie-form-container">
-              <div className="row">
+              <Row>
                 <Col
                   className="pie-form-control"
                   xs={12}
@@ -100,7 +101,7 @@ class Manager extends Component {
                     disabled={this.state.blocked}
                   />
                 </Col>
-              </div>
+              </Row>
             </div>
           </form>
         </div>
