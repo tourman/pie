@@ -56,7 +56,6 @@ class ManagerStore extends Store {
   @autobind
   'act.changeItem'(startingState, {item}) {
     const endingState = this.extend(startingState, item);
-    //endingState.rate = endingState.rate.replace(/\D/g, '');
     return endingState;
   }
 
