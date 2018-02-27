@@ -30,9 +30,14 @@ class Store extends ReduceStore {
   }
 
   getAct(type) {
-    const key = `act.${type}`;
+    const key = this.getActKey(type);
     let act = this[key] || (() => {});
     return act;
+  }
+
+  getActKey(type) {
+    const key = `act.${type}`;
+    return key;
   }
 
   addListener(callback) {
