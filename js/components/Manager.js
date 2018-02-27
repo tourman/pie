@@ -4,8 +4,8 @@ import Button from './Manager/Button';
 import RateInput from './Manager/RateInput';
 import DescriptionInputWithFocus from './Manager/DescriptionInputWithFocus';
 import managerStore from '../stores/managerStore';
-import { Col } from 'react-bootstrap';
 import autobind from 'autobind-decorator';
+import gridFactory from './gridFactory';
 
 class Manager extends Component {
   constructor(props) {
@@ -57,6 +57,7 @@ class Manager extends Component {
   }
 
   render() {
+    const Col = gridFactory.createCol();
     return (
       <div className="panel panel-default">
         <div className="panel-heading">

@@ -1,7 +1,8 @@
 import React from 'react';
-import { FormControl } from 'react-bootstrap';
+import gridFactory from '../gridFactory';
 
 export default (props) => {
+  const FormControl = gridFactory.createFormControl();
   return (
     <FormControl
       type="text"
