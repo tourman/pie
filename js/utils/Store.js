@@ -7,9 +7,10 @@ class Store extends ReduceStore {
   }
 
   reduce(startingState, action) {
+    let endingState;
     const act = this.getAct(action.type);
-    const data = action.data || {};
-    let endingState = act(startingState, data) || startingState;
+
+    endingState = act(startingState, action.data);
     endingState = this.afterReduce(endingState, action);
     endingState = this.freeze(endingState);
     return endingState;
@@ -31,7 +32,7 @@ class Store extends ReduceStore {
 
   getAct(type) {
     const key = this.getActKey(type);
-    let act = this[key] || (() => {});
+    let act = this[key] || (state => state);
     return act;
   }
 
