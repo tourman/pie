@@ -4,14 +4,16 @@ import autobind from 'autobind-decorator';
 
 class ManagerStore extends Store {
   getInitialState() {
-    return Object.freeze({
+    let initialState = {
       title       : 'Try to add an item',
       description : '',
       rate        : '',
       valid       : true,
       focus       : true,
       blocked     : true
-    });
+    };
+    initialState = this.freeze(initialState);
+    return initialState;
   }
 
   afterReduce(startingState, action) {

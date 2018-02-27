@@ -10,12 +10,18 @@ class Store extends ReduceStore {
     const data = action.data || {};
     let endingState = act(startingState, data) || startingState;
     endingState = this.afterReduce(endingState, action);
-    Object.freeze(endingState);
+    endingState = this.freeze(endingState);
     return endingState;
   }
 
   afterReduce(startingState) {
     return startingState;
+  }
+
+  freeze(obj) {
+    const frozenObj = {...obj};
+    Object.freeze(frozenObj);
+    return frozenObj;
   }
 
   extend(startingState, ...extensions) {
