@@ -1,4 +1,5 @@
 import { ReduceStore } from 'flux/utils';
+import utils from './common';
 
 class Store extends ReduceStore {
   constructor(dispatcher) {
@@ -19,8 +20,7 @@ class Store extends ReduceStore {
   }
 
   freeze(obj) {
-    const frozenObj = {...obj};
-    Object.freeze(frozenObj);
+    const frozenObj = utils.freeze(obj);
     return frozenObj;
   }
 
