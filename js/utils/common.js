@@ -11,5 +11,10 @@ export default {
   isStringAPositiveIntegerOrZero(value) {
     const valid = value.match(/^(0?|[1-9]\d*)$/);
     return valid;
+  },
+
+  cloneWithMerge(...objects) {
+    const obj = Object.assign({}, ...objects);
+    return obj;
   }
 };

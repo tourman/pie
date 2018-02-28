@@ -25,11 +25,6 @@ class Store extends ReduceStore {
     return frozenObj;
   }
 
-  extend(startingState, ...extensions) {
-    const endingState = Object.assign({}, startingState, ...extensions);
-    return endingState;
-  }
-
   getAct(type) {
     const key = this.getActKey(type);
     let act = this[key] || (state => state);
