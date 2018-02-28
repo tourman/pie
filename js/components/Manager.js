@@ -5,7 +5,7 @@ import RateInput from './Manager/RateInput';
 import DescriptionInputWithFocus from './Manager/DescriptionInputWithFocus';
 import managerStore from '../stores/managerStore';
 import autobind from 'autobind-decorator';
-import gridFactory from './gridFactory';
+import nodeFactory from './nodeFactory';
 
 class Manager extends Component {
   constructor(props) {
@@ -57,8 +57,8 @@ class Manager extends Component {
   }
 
   render() {
-    const Row = gridFactory.createRow();
-    const Col = gridFactory.createCol();
+    const Row = nodeFactory.createRow();
+    const Col = nodeFactory.createCol();
     return (
       <div className="panel panel-default">
         <div className="panel-heading">

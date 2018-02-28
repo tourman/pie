@@ -1,8 +1,8 @@
 import React from 'react';
-import gridFactory from '../gridFactory';
+import nodeFactory from '../nodeFactory';
 
 export default (props) => {
-  const Button = gridFactory.createButton();
+  const Button = nodeFactory.createButton();
   return (
     <Button
       type="submit"

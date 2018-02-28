@@ -6,7 +6,7 @@ import {
   Button
 } from 'react-bootstrap';
 
-class GridFactory {
+class NodeFactory {
   createCol() {
     return Col;
   }
@@ -28,4 +28,4 @@ class GridFactory {
   }
 }
 
-export default new GridFactory();
+export default new NodeFactory();

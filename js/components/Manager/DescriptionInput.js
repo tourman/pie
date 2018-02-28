@@ -1,8 +1,8 @@
 import React from 'react';
-import gridFactory from '../gridFactory';
+import nodeFactory from '../nodeFactory';
 
 export default (props) => {
-  const FormControl = gridFactory.createFormControl();
+  const FormControl = nodeFactory.createFormControl();
   return (
     <FormControl
       type="text"

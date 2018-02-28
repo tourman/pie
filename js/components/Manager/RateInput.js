@@ -1,10 +1,10 @@
 import React from 'react';
-import gridFactory from '../gridFactory';
+import nodeFactory from '../nodeFactory';
 
 export default (props) => {
   const validationState = props.valid ? null : 'error';
-  const FormGroup = gridFactory.createFormGroup();
-  const FormControl = gridFactory.createFormControl();
+  const FormGroup = nodeFactory.createFormGroup();
+  const FormControl = nodeFactory.createFormControl();
   return (
     <FormGroup
       validationState={validationState}
