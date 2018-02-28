@@ -8,9 +8,7 @@ class Store extends ReduceStore {
 
   reduce(startingState, action) {
     let endingState;
-    const act = this.getAct(action.type);
-
-    endingState = act(startingState, action.data);
+    endingState = this.act(startingState, action);
     endingState = this.afterReduce(endingState, action);
     endingState = this.freeze(endingState);
     return endingState;
@@ -23,6 +21,12 @@ class Store extends ReduceStore {
   freeze(obj) {
     const frozenObj = utils.freeze(obj);
     return frozenObj;
+  }
+
+  act(startingState, action) {
+    const act = this.getAct(action.type);
+    const endingState = act(startingState, action.data);
+    return endingState;
   }
 
   getAct(type) {
