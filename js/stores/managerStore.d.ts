@@ -1,4 +1,5 @@
 export const managerStore: {
-  getState(): {}
+  getState(): {},
+  addListener(callback: (state: {}) => void): {remove: Function}
 };
 export default managerStore;
