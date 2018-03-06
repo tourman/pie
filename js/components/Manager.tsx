@@ -7,8 +7,10 @@ import managerStore from '../stores/managerStore';
 import autobind from 'autobind-decorator';
 import nodeFactory from './nodeFactory';
 
-class Manager extends React.Component {
-  constructor(props) {
+type Props = {};
+
+class Manager extends React.Component<Props> {
+  constructor(props: Props) {
     super(props);
 
     this.state = managerStore.getState();
