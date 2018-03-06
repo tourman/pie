@@ -6,11 +6,11 @@ import DescriptionInputWithFocus from './Manager/DescriptionInputWithFocus';
 import managerStore from '../stores/managerStore';
 import autobind from 'autobind-decorator';
 import nodeFactory from './nodeFactory';
+import { IManagerState } from '../states/manager';
 
 type P = {};
-type S = {};
 
-class Manager extends React.Component<P, S> {
+class Manager extends React.Component<P, IManagerState> {
   constructor(props: P) {
     super(props);
 
@@ -18,7 +18,7 @@ class Manager extends React.Component<P, S> {
   }
 
   @autobind
-  updateState(state: S): Manager {
+  updateState(state: IManagerState): Manager {
     super.setState(state);
     return this;
   }
