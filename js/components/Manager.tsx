@@ -7,18 +7,20 @@ import managerStore from '../stores/managerStore';
 import autobind from 'autobind-decorator';
 import nodeFactory from './nodeFactory';
 
-type Props = {};
+type P = {};
+type S = {};
 
-class Manager extends React.Component<Props> {
-  constructor(props: Props) {
+class Manager extends React.Component<P, S> {
+  constructor(props: P) {
     super(props);
 
     this.state = managerStore.getState();
   }
 
   @autobind
-  setState(...args) {
-    return super.setState(...args);
+  updateState(state: S): Manager {
+    super.setState(state);
+    return this;
   }
 
   @autobind
@@ -38,7 +40,7 @@ class Manager extends React.Component<Props> {
   }
 
   componentDidMount() {
-    managerStore.addListener(this.setState);
+    managerStore.addListener(this.updateState);
   }
 
   @autobind
