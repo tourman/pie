@@ -24,7 +24,7 @@ class Manager extends React.Component<P, S> {
   }
 
   @autobind
-  onChangeDescription(event) {
+  onChangeDescription(event: React.ChangeEvent<HTMLInputElement>) {
     event.preventDefault();
     managerActions.changeItem({
       description: event.target.value
@@ -32,7 +32,7 @@ class Manager extends React.Component<P, S> {
   }
 
   @autobind
-  onChangeRate(event) {
+  onChangeRate(event: React.ChangeEvent<HTMLInputElement>) {
     event.preventDefault();
     managerActions.changeItem({
       rate: event.target.value
@@ -44,7 +44,7 @@ class Manager extends React.Component<P, S> {
   }
 
   @autobind
-  onSubmit(event) {
+  onSubmit(event: React.FormEvent<HTMLFormElement>) {
     event.preventDefault();
     managerActions.addNewItem();
     managerActions.resetItem();
