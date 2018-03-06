@@ -1,4 +1,4 @@
-import React, { Component } from 'react';
+import * as React from 'react';
 import managerActions from '../actions/managerActions';
 import Button from './Manager/Button';
 import RateInput from './Manager/RateInput';
@@ -7,7 +7,7 @@ import managerStore from '../stores/managerStore';
 import autobind from 'autobind-decorator';
 import nodeFactory from './nodeFactory';
 
-class Manager extends Component {
+class Manager extends React.Component {
   constructor(props) {
     super(props);
 
