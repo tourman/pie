@@ -1,15 +1,17 @@
 import { ReduceStore } from 'flux/utils';
+import { Dispatcher } from 'flux';
 import utils from './common';
 import { IState } from '../states/IState';
+import { IAction } from '../actions/IAction';
 
 type TPayload = {};
 
 abstract class Store extends ReduceStore <IState, TPayload> {
-  constructor(dispatcher) {
+  constructor(dispatcher: Dispatcher <TPayload>) {
     super(dispatcher);
   }
 
-  reduce(startingState, action) {
+  reduce(startingState: IState, action: IAction) {
     let endingState;
     endingState = this.act(startingState, action);
     endingState = this.afterReduce(endingState, action);
@@ -17,22 +19,23 @@ abstract class Store extends ReduceStore <IState, TPayload> {
     return endingState;
   }
 
-  afterReduce(startingState) {
+  afterReduce(startingState: IState, action?: IAction) {
     return startingState;
   }
 
-  freeze(obj) {
-    const frozenObj = utils.freeze(obj);
-    return frozenObj;
+  freeze(state: IState) {
+    const frozenState = utils.freeze(state);
+    return frozenState;
   }
 
-  act(startingState, action) {
-    const act = this.getAct(action.type);
+  act(startingState: IState, action: IAction) {
+    const act = this.getAct(action);
     const endingState = act(startingState, action.data);
     return endingState;
   }
 
-  getAct(type) {
+  getAct(action: IAction) {
+    const type = action.type;
     const key = this.getActKey(type);
     let act = this[key] || (state => state);
     return act;
