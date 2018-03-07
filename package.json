@@ -23,6 +23,7 @@
   },
   "homepage": "https://github.com/tourman/pie#readme",
   "dependencies": {
+    "@types/flux": "^3.1.7",
     "@types/react": "^16.0.40",
     "@types/react-dom": "^16.0.4",
     "autobind-decorator": "^2.1.0",
