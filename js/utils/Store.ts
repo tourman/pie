@@ -11,7 +11,7 @@ abstract class Store extends ReduceStore <IState, TPayload> {
     super(dispatcher);
   }
 
-  reduce(startingState: IState, action: IAction) {
+  reduce(startingState: IState, action: IAction): IState {
     let endingState;
     endingState = this.act(startingState, action);
     endingState = this.afterReduce(endingState, action);
@@ -19,22 +19,22 @@ abstract class Store extends ReduceStore <IState, TPayload> {
     return endingState;
   }
 
-  afterReduce(startingState: IState, action?: IAction) {
+  afterReduce(startingState: IState, action?: IAction): IState {
     return startingState;
   }
 
-  freeze(state: IState) {
+  freeze(state: IState): IState {
     const frozenState = utils.freeze(state);
     return frozenState;
   }
 
-  act(startingState: IState, action: IAction) {
+  act(startingState: IState, action: IAction): IState {
     const act = this.getAct(action);
-    const endingState = act(startingState, action.data);
+    const endingState = act(startingState, action);
     return endingState;
   }
 
-  getAct(action: IAction) {
+  getAct(action: IAction): (startingState: IState, action?: IAction) => { endingState: IState } {
     const type = action.type;
     const key = this.getActKey(type);
     let act = this[key] || (state => state);
