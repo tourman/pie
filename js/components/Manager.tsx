@@ -10,7 +10,7 @@ import { IManagerState } from '../states/manager';
 
 type P = {};
 
-class Manager extends React.Component<P, IManagerState> {
+class Manager extends React.Component <P, IManagerState> {
   constructor(props: P) {
     super(props);
 
