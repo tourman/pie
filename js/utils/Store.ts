@@ -1,7 +1,10 @@
 import { ReduceStore } from 'flux/utils';
 import utils from './common';
+import { IState } from '../states/IState';
 
-class Store extends ReduceStore {
+type TPayload = {};
+
+abstract class Store extends ReduceStore <IState, TPayload> {
   constructor(dispatcher) {
     super(dispatcher);
   }

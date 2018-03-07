@@ -1,4 +1,6 @@
-export interface IManagerState {
+import { IState } from './IState';
+
+export interface IManagerState extends IState {
   title       : string;
   description : string;
   rate        : string;
