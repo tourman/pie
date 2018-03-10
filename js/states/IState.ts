@@ -1,2 +1,4 @@
-export interface IState {
-}
+interface IState {
+};
+
+export default IState;

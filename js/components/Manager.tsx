@@ -1,19 +1,20 @@
 import * as React from 'react';
 import managerActions from '../actions/managerActions';
+import { actionFactory } from '../actions/ActionFactory';
 import Button from './Manager/Button';
 import RateInput from './Manager/RateInput';
 import DescriptionInputWithFocus from './Manager/DescriptionInputWithFocus';
 import managerStore from '../stores/managerStore';
 import autobind from 'autobind-decorator';
 import nodeFactory from './nodeFactory';
-import { IManagerState } from '../states/manager';
+import IManagerState from '../states/IManagerState';
+import { actionManager } from '../actions/ActionManager';
 
 type P = {};
 
 class Manager extends React.Component <P, IManagerState> {
   constructor(props: P) {
     super(props);
-
     this.state = managerStore.getState();
   }
 
@@ -24,15 +25,14 @@ class Manager extends React.Component <P, IManagerState> {
   }
 
   @autobind
-  onChangeDescription(event: React.ChangeEvent<HTMLInputElement>) {
+  onChangeDescription(event: React.ChangeEvent <HTMLInputElement>) {
+    const action = actionFactory.createChangeItemDescriptionAction(event);
     event.preventDefault();
-    managerActions.changeItem({
-      description: event.target.value
-    });
+    actionManager.act(action);
   }
 
   @autobind
-  onChangeRate(event: React.ChangeEvent<HTMLInputElement>) {
+  onChangeRate(event: React.ChangeEvent <HTMLInputElement>) {
     event.preventDefault();
     managerActions.changeItem({
       rate: event.target.value
@@ -40,11 +40,11 @@ class Manager extends React.Component <P, IManagerState> {
   }
 
   componentDidMount() {
-    managerStore.addListener(this.updateState);
+    managerStore.addListenerWithState(this.updateState);
   }
 
   @autobind
-  onSubmit(event: React.FormEvent<HTMLFormElement>) {
+  onSubmit(event: React.FormEvent <HTMLFormElement>) {
     event.preventDefault();
     managerActions.addNewItem();
     managerActions.resetItem();

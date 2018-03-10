@@ -1,56 +1,42 @@
 import { ReduceStore } from 'flux/utils';
 import { Dispatcher } from 'flux';
 import utils from './common';
-import { IState } from '../states/IState';
-import { IAction } from '../actions/IAction';
+import IExtendedAction from '../actions/IExtendedAction';
+import IActionHandler from '../actions/IActionHandler';
+import IState from '../states/IState';
+import * as fbEmitter from 'fbemitter';
 
 type TPayload = {};
 
-abstract class Store extends ReduceStore <IState, TPayload> {
+abstract class Store <IExtendedState extends IState> extends ReduceStore <IExtendedState, TPayload> implements IActionHandler {
   constructor(dispatcher: Dispatcher <TPayload>) {
     super(dispatcher);
   }
 
-  reduce(startingState: IState, action: IAction): IState {
-    let endingState;
-    endingState = this.act(startingState, action);
-    endingState = this.afterReduce(endingState, action);
+  reduce(startingState: IExtendedState, action: IExtendedAction <IExtendedState>): IExtendedState {
+    let endingState: IExtendedState;
+    endingState = action.act(this, startingState);
+    endingState = this.afterReduce(endingState);
     endingState = this.freeze(endingState);
     return endingState;
   }
 
-  afterReduce(startingState: IState, action?: IAction): IState {
+  afterReduce(startingState: IExtendedState): IExtendedState {
     return startingState;
   }
 
-  freeze(state: IState): IState {
-    const frozenState = utils.freeze(state);
+  freeze(state: IExtendedState): IExtendedState {
+    const frozenState: IExtendedState = utils.freeze(state);
     return frozenState;
   }
 
-  act(startingState: IState, action: IAction): IState {
-    const act = this.getAct(action);
-    const endingState = act(startingState, action);
-    return endingState;
-  }
-
-  getAct(action: IAction): (startingState: IState, action?: IAction) => { endingState: IState } {
-    const type = action.type;
-    const key = this.getActKey(type);
-    let act = this[key] || (state => state);
-    return act;
-  }
-
-  getActKey(type) {
-    const key = `act.${type}`;
-    return key;
-  }
-
-  addListener(callback) {
-    super.addListener(() => {
+  addListenerWithState(callback: (state: IExtendedState) => any): fbEmitter.EventSubscription {
+    const subscription = this.addListener(() => {
       const state = this.getState();
-      return callback(state);
+      const result = callback(state);
+      return result;
     });
+    return subscription;
   }
 }
 
