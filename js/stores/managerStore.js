@@ -26,7 +26,7 @@ class ManagerStore extends Store {
 
   setBlocked(state) {
     const blocked = this.isBlocked(state);
-    const endingState = utils.cloneWithMerge(state, {
+    const endingState = utils.cloneAndExtend(state, {
       blocked
     });
     return endingState;
@@ -42,7 +42,7 @@ class ManagerStore extends Store {
 
   setValid(state) {
     const valid = this.isValid(state);
-    const endingState = utils.cloneWithMerge(state, {
+    const endingState = utils.cloneAndExtend(state, {
       valid
     });
     return endingState;
@@ -55,13 +55,13 @@ class ManagerStore extends Store {
 
   @autobind
   'act.changeItem'(startingState, {item}) {
-    const endingState = utils.cloneWithMerge(startingState, item);
+    const endingState = utils.cloneAndExtend(startingState, item);
     return endingState;
   }
 
   @autobind
   'act.resetItem'(startingState) {
-    const endingState = utils.cloneWithMerge(startingState, {
+    const endingState = utils.cloneAndExtend(startingState, {
       focus       : true,
       description : '',
       rate        : ''
@@ -71,7 +71,7 @@ class ManagerStore extends Store {
 
   @autobind
   'act.focusItem'(startingState) {
-    const endingState = utils.cloneWithMerge(startingState, {
+    const endingState = utils.cloneAndExtend(startingState, {
       focus       : true
     });
     return endingState;
@@ -79,7 +79,7 @@ class ManagerStore extends Store {
 
   @autobind
   'act.blurItem'(startingState) {
-    const endingState = utils.cloneWithMerge(startingState, {
+    const endingState = utils.cloneAndExtend(startingState, {
       focus       : false
     });
     return endingState;

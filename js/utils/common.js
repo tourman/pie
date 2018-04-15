@@ -1,3 +1,5 @@
+import _ from 'downline';
+
 export default {
   freeze(obj) {
     const frozenObj = {...obj};
@@ -13,8 +15,8 @@ export default {
     return valid;
   },
 
-  cloneWithMerge(...objects) {
-    const obj = Object.assign({}, ...objects);
+  cloneAndExtend(...objects) {
+    const obj = _.cloneAndExtend(...objects);
     return obj;
   }
 };
