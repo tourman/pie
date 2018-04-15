@@ -1,4 +1,4 @@
-import Store from '../utils/Store';
+import Store from './Store';
 import dispatcher from '../dispatcher';
 import autobind from 'autobind-decorator';
 import utils from '../utils/common';

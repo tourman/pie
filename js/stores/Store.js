@@ -1,5 +1,5 @@
 import { ReduceStore } from 'flux/utils';
-import utils from './common';
+import utils from '../utils/common';
 
 class Store extends ReduceStore {
   constructor(dispatcher) {
