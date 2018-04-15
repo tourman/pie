@@ -1,5 +1,5 @@
 import React from 'react';
-import nodeFactory from '../nodeFactory';
+import nodeFactory from './nodeFactory';
 
 export default (props) => {
   const validationState = props.valid ? null : 'error';

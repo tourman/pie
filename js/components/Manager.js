@@ -1,8 +1,8 @@
 import React, { Component } from 'react';
 import managerActions from '../actions/managerActions';
-import Button from './Manager/Button';
-import RateInput from './Manager/RateInput';
-import DescriptionInputWithFocus from './Manager/DescriptionInputWithFocus';
+import Button from './Button';
+import RateInput from './RateInput';
+import DescriptionInputWithFocus from './DescriptionInputWithFocus';
 import managerStore from '../stores/managerStore';
 import autobind from 'autobind-decorator';
 import nodeFactory from './nodeFactory';
