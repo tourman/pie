@@ -1,6 +1,8 @@
+'use strict';
+
 import _ from 'downline';
 
-export default {
+_.extend(_, {
   freeze(obj) {
     const frozenObj = {...obj};
     Object.freeze(frozenObj);
@@ -13,10 +15,7 @@ export default {
   isStringAPositiveIntegerOrZero(value) {
     const valid = value.match(/^(0?|[1-9]\d*)$/);
     return valid;
-  },
-
-  cloneAndExtend(...objects) {
-    const obj = _.cloneAndExtend(...objects);
-    return obj;
   }
-};
+});
+
+export default _;
