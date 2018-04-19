@@ -27,9 +27,7 @@ class App extends Component {
               <a href="https://github.com/tourman/pie">https://github.com/tourman/pie</a>
             </h6>
 
-            <div>
-              <Manager />
-            </div>
+            <Manager />
 
             <div>
               <Chart />
