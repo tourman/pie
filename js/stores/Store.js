@@ -4,7 +4,7 @@ import utils from '../utils/common';
 class Store extends ReduceStore {
   constructor(dispatcher) {
     super(dispatcher);
-    this.tokens = [];
+    this.tokens = new Map();
   }
 
   reduce(startingState, action) {
@@ -52,26 +52,23 @@ class Store extends ReduceStore {
 
   removeListener(callback) {
     const token = this.getTokenByCallback(callback);
+    this.removeTokenByCallback(callback);
     token.remove();
     return this;
   }
 
   setToken(callback, token) {
-    this.tokens.push({
-      callback,
-      token
-    });
+    this.tokens.set(callback, token);
     return this;
   }
 
   getTokenByCallback(callback) {
-    const hash = this.tokens.find(hash => hash.callback == callback);
-    this.removeTokenByHash(hash);
-    return hash && hash.token;
+    const token = this.tokens.get(callback);
+    return token;
   }
 
-  removeTokenByHash(hash) {
-    this.tokens = this.tokens.filter(tokenHash => tokenHash != hash);
+  removeTokenByCallback(callback) {
+    this.tokens.delete(callback);
     return this;
   }
 }
