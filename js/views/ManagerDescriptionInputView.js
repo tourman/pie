@@ -1,8 +1,8 @@
 'use strict';
 
 import React from 'react';
-import nodeFactory from '../components/nodeFactory';
-import DescriptionInputWithFocus from '../components/DescriptionInputWithFocus';
+import nodeFactory from './nodeFactory';
+import DescriptionInputWithFocus from './DescriptionInputWithFocus';
 
 export default props => {
   const Col = nodeFactory.createCol();

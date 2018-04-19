@@ -1,7 +1,7 @@
 'use strict';
 
 import React from 'react';
-import nodeFactory from '../components/nodeFactory';
+import nodeFactory from './nodeFactory';
 
 export default props => {
   const Row = nodeFactory.createRow();

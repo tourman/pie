@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import Manager from '../components/Manager';
+import Manager from '../controllers/Manager';
 import List from '../components/List';
 import Chart from '../components/Chart';
 

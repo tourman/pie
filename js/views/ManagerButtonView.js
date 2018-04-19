@@ -1,8 +1,8 @@
 'use strict';
 
 import React from 'react';
-import nodeFactory from '../components/nodeFactory';
-import Button from '../components/Button';
+import nodeFactory from './nodeFactory';
+import Button from './Button';
 
 export default props => {
   const Col = nodeFactory.createCol();
