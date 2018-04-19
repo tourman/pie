@@ -29,13 +29,9 @@ class App extends Component {
 
             <Manager />
 
-            <div>
-              <Chart />
-            </div>
+            <Chart />
 
-            <div>
-              <List />
-            </div>
+            <List />
           </div>
         </div>
       </div>

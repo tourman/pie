@@ -77,7 +77,7 @@ class Chart extends Component {
   render() {
     console.log('Re-render chart');
     return (
-      <div className="panel panel-default"><div className="panel-body pie-chart-panel">
+      <div><div className="panel panel-default"><div className="panel-body pie-chart-panel">
         <div className="row">
           <div className="
               col-xs-6 col-xs-offset-6
@@ -92,7 +92,7 @@ class Chart extends Component {
             </div>
           </div>
         </div>
-      </div></div>
+      </div></div></div>
     );
   }
 }

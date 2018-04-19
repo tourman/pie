@@ -47,7 +47,7 @@ class List extends Component {
 
   render() {
     let list = (
-      <ul className="pie-list list-group">
+      <div><ul className="pie-list list-group">
         {this.state.items.map((item) => {
             let htmlItemName = `item.${item.id}`;
             let listItem = (
@@ -90,7 +90,7 @@ class List extends Component {
             return listItem;
           }
         )}
-      </ul>
+      </ul></div>
     );
     return list;
   }
