@@ -1,8 +1,8 @@
 'use strict';
 
-import _ from 'downline';
+import extend from 'lodash/extend';
 
-_.extend(_, {
+const common = {
   freeze(obj) {
     const frozenObj = {...obj};
     Object.freeze(frozenObj);
@@ -15,7 +15,12 @@ _.extend(_, {
   isStringAPositiveIntegerOrZero(value) {
     const valid = value.match(/^(0?|[1-9]\d*)$/);
     return valid;
-  }
-});
+  },
 
-export default _;
+  cloneAndExtend(...objects) {
+    const obj = extend({}, ...objects);
+    return obj;
+  }
+};
+
+export default common;
