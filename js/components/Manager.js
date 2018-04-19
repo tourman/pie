@@ -20,6 +20,10 @@ class Manager extends Component {
     managerStore.addListener(this.setState);
   }
 
+  componentWillUnmount() {
+    managerStore.removeListener(this.setState);
+  }
+
   getProps() {
     const props = {
       ...this.state,
