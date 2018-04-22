@@ -1,10 +1,11 @@
 import { ReduceStore } from 'flux/utils';
 import utils from '../utils/common';
+import StoreToken from './StoreToken';
 
 class Store extends ReduceStore {
   constructor(dispatcher) {
     super(dispatcher);
-    this.tokens = new Map();
+    this.token = new StoreToken();
   }
 
   getInitialState() {
@@ -28,33 +29,17 @@ class Store extends ReduceStore {
   }
 
   addListener(callback) {
-    const token = this.getTokenByCallback(callback) || super.addListener(() => {
+    const token = this.token.get(callback) || super.addListener(() => {
       const state = this.getState();
       return callback(state);
     });
-    this.setToken(callback, token);
+    this.token.set(callback, token);
     return this;
   }
 
   removeListener(callback) {
-    const token = this.getTokenByCallback(callback);
-    this.removeTokenByCallback(callback);
+    const token = this.token.eject(callback);
     token.remove();
-    return this;
-  }
-
-  setToken(callback, token) {
-    this.tokens.set(callback, token);
-    return this;
-  }
-
-  getTokenByCallback(callback) {
-    const token = this.tokens.get(callback);
-    return token;
-  }
-
-  removeTokenByCallback(callback) {
-    this.tokens.delete(callback);
     return this;
   }
 }
