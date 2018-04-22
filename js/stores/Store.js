@@ -7,38 +7,24 @@ class Store extends ReduceStore {
     this.tokens = new Map();
   }
 
+  getInitialState() {
+    this.model = this.model || this.getModel();
+    this.model.fetch();
+    const initialState = this.model.get();
+    return initialState;
+  }
+
   reduce(startingState, action) {
-    let endingState;
-    endingState = this.act(startingState, action);
-    endingState = this.afterReduce(endingState, action);
-    endingState = this.freeze(endingState);
-    return endingState;
+    this.act(action);
+    this.afterReduce(action);
+    const state = this.model.get();
+    return state;
   }
 
-  afterReduce(startingState) {
-    return startingState;
-  }
-
-  freeze(obj) {
-    const frozenObj = utils.freeze(obj);
-    return frozenObj;
-  }
-
-  act(startingState, action) {
+  act(action) {
     const act = this.getAct(action.type);
-    const endingState = act(startingState, action.data);
-    return endingState;
-  }
-
-  getAct(type) {
-    const key = this.getActKey(type);
-    let act = this[key] || (state => state);
-    return act;
-  }
-
-  getActKey(type) {
-    const key = `act.${type}`;
-    return key;
+    act(action.data);
+    return this;
   }
 
   addListener(callback) {
