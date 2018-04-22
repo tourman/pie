@@ -10,7 +10,7 @@ module.exports = {
     filename: 'bundle.js',
     publicPath: '/js/'
   },
-  devtool: 'eval',
+  devtool: 'source-map',
   plugins: [
     new webpack.HotModuleReplacementPlugin()
   ],
