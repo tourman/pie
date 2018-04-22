@@ -2,87 +2,57 @@ import Store from './Store';
 import dispatcher from '../dispatcher';
 import autobind from 'autobind-decorator';
 import utils from '../utils/common';
+import managerStateModel from '../states/managerStateModel';
 
 class ManagerStore extends Store {
   getInitialState() {
-    let initialState = {
-      title       : 'Try to add an item',
-      description : '',
-      rate        : '',
-      valid       : true,
-      focus       : true,
-      blocked     : true
-    };
-    initialState = this.freeze(initialState);
+    managerStateModel.fetch();
+    const initialState = managerStateModel.get();
     return initialState;
   }
 
   afterReduce(startingState, action) {
-    let endingState = startingState;
-    endingState = this.setBlocked(endingState);
-    endingState = this.setValid(endingState);
-    return endingState;
-  }
-
-  setBlocked(state) {
-    const blocked = this.isBlocked(state);
-    const endingState = utils.cloneAndExtend(state, {
-      blocked
-    });
-    return endingState;
-  }
-
-  isBlocked(state) {
-    const emptyDescription = !state.description.length;
-    const emptyRate = !state.rate.length;
-    const invalid = !this.isValid(state);
-    const blocked = emptyDescription || emptyRate || invalid;
-    return blocked;
-  }
-
-  setValid(state) {
-    const valid = this.isValid(state);
-    const endingState = utils.cloneAndExtend(state, {
-      valid
-    });
-    return endingState;
-  }
-
-  isValid(state) {
-    const valid = utils.isStringAPositiveIntegerOrZero(state.rate);
-    return valid;
+    managerStateModel.setBlocked();
+    managerStateModel.setValid();
+    managerStateModel.save();
+    const state = managerStateModel.get();
+    return state;
   }
 
   @autobind
   'act.changeItem'(startingState, {item}) {
-    const endingState = utils.cloneAndExtend(startingState, item);
-    return endingState;
+    managerStateModel.set(item);
+    const state = managerStateModel.get();
+    return state;
   }
 
   @autobind
   'act.resetItem'(startingState) {
-    const endingState = utils.cloneAndExtend(startingState, {
+    managerStateModel.set({
       focus       : true,
       description : '',
-      rate        : ''
+      rate        : '',
     });
-    return endingState;
+    const state = managerStateModel.get();
+    return state;
   }
 
   @autobind
   'act.focusItem'(startingState) {
-    const endingState = utils.cloneAndExtend(startingState, {
+    managerStateModel.set({
       focus       : true
     });
-    return endingState;
+    const state = managerStateModel.get();
+    return state;
   }
 
   @autobind
   'act.blurItem'(startingState) {
-    const endingState = utils.cloneAndExtend(startingState, {
+    managerStateModel.set({
       focus       : false
     });
-    return endingState;
+    const state = managerStateModel.get();
+    return state;
   }
 }
 

@@ -13,7 +13,7 @@ const common = {
    * See unit tests: https://regex101.com/r/1yQnCf/1
    */
   isStringAPositiveIntegerOrZero(value) {
-    const valid = value.match(/^(0?|[1-9]\d*)$/);
+    const valid = /^(0?|[1-9]\d*)$/.test(value);
     return valid;
   },
 
