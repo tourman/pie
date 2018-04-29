@@ -1,3 +1,9 @@
 import { Dispatcher } from 'flux';
 
-export default new Dispatcher();
+class PieDispatcher extends Dispatcher {
+  dispatch(...args) {
+    setTimeout(() => super.dispatch(...args));
+  }
+}
+
+export default new PieDispatcher();

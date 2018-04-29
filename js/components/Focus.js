@@ -41,15 +41,17 @@ export default OriginComponent => (class Focus extends Component {
 
   @autobind
   onFocus() {
+    clearTimeout(this.blurTimer);
     if (!this.props.focus) {
-      this.props.onFocus();
+      this.focusTimer = setTimeout(() => this.props.onFocus());
     }
   }
 
   @autobind
   onBlur() {
+    clearTimeout(this.focusTimer);
     if (this.props.focus) {
-      this.props.onBlur();
+      this.blurTimer = setTimeout(() => this.props.onBlur());
     }
   }
 
