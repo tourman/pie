@@ -1,8 +1,9 @@
 'use strict';
 
-import Model from '../models/Model';
+import modelFactory from '../models/LocalStorageModelFactory';
 import utils from '../utils/common';
-import { LocalStorage } from 'backbone.localstorage';
+
+const Model = modelFactory('manager');
 
 class ManagerStateModel extends Model {
   defaults() {
@@ -49,7 +50,5 @@ class ManagerStateModel extends Model {
     return valid;
   }
 };
-
-ManagerStateModel.prototype.localStorage = new LocalStorage('manager');
 
 export default new ManagerStateModel();
