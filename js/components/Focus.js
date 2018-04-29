@@ -2,32 +2,46 @@ import React, { Component } from 'react';
 import autobind from 'autobind-decorator';
 
 export default OriginComponent => (class Focus extends Component {
-  componentDidUpdate(prevProps) {
-    this.focusOrBlur(prevProps);
+  constructor(...args) {
+    super(...args);
+    this.needToUpdateComponent = true;
+  }
+
+  componentWillReceiveProps(nextProps) {
+    this.focusOrBlur(this.props, nextProps);
+  }
+
+  shouldComponentUpdate() {
+    const needToUpdateComponent = this.needToUpdateComponent;
+    this.needToUpdateComponent = true;
+    return needToUpdateComponent;
   }
 
   componentDidMount() {
-    this.focusOrBlur();
+    this.focusOrBlur({}, this.props);
   }
 
-  focusOrBlur(prevProps = {}) {
-    const focus = this.isFocus();
-    const blur = this.isBlur()
+  focusOrBlur(prevProps = {}, nextProps = {}) {
+    const focus = this.isFocus(prevProps, nextProps);
+    const blur = this.isBlur(prevProps, nextProps)
     if (focus) {
       this.focus();
     }
     if (blur) {
       this.blur();
     }
+    if (focus || blur) {
+      this.needToUpdateComponent = false;
+    }
   }
 
-  isFocus(prevProps = {}) {
-    const focus = !prevProps.focus && this.props.focus;
+  isFocus(prevProps = {}, nextProps = {}) {
+    const focus = !prevProps.focus && nextProps.focus;
     return focus;
   }
 
-  isBlur(prevProps = {}) {
-    const blur = prevProps.focus && !this.props.focus;
+  isBlur(prevProps = {}, nextProps = {}) {
+    const blur = prevProps.focus && !nextProps.focus;
     return blur;
   }
 
