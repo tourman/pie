@@ -14,7 +14,7 @@ class ManagerAct {
 
   @autobind
   changeItem({item}) {
-    this.dataModel .save(item);
+    this.dataModel .saveEvenInvalid(item);
     this.stateModel.saveValidAndBlocked(this.dataModel);
   }
 

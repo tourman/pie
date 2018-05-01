@@ -14,6 +14,17 @@ class Model extends Backbone.Model {
     return result;
   }
 
+  saveEvenInvalid(attrs, options = {}, lastOptions) {
+    let result;
+    if (typeof attrs === 'string') {
+      result = this.saveEvenInvalid({attrs: options}, lastOptions);
+    } else {
+      options.validate = false;
+      result = this.save(attrs, options);
+    }
+    return result;
+  }
+
   sync(method, model, options) {
     options.method = method;
     const result = super.sync(method, model, options);
