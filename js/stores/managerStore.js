@@ -9,54 +9,49 @@ import autobind from 'autobind-decorator';
 class ManagerStore extends Store {
   constructor(...args) {
     super(...args);
+  }
 
-    this.actions = managerActions;
+  get dataModel() {
+    return managerDataModel;
+  }
 
-    const models = this.getModels();
-    this.managerAct = new ManagerAct({...models, actions: this.actions});
+  get stateModel() {
+    return managerStateModel;
+  }
+
+  get actions() {
+    return managerActions;
+  }
+
+  get managerAct() {
+    this._managerAct = this._managerAct || new ManagerAct(this);
+    return this._managerAct;
   }
 
   addListener(...args) {
     const result = super.addListener(...args);
-    const {dataModel} = this.getModels();
-    dataModel.addListenerOnChange((item, options) => this.actions.changeItem({item, options}));
-    dataModel.addListenerOnEndRead(this.actions.endReadItem);
-    dataModel.fetch();
+    this.dataModel.addListenerOnChange((item, options) => this.actions.changeItem({item, options}));
+    this.dataModel.addListenerOnEndRead(this.actions.endReadItem);
+    this.dataModel.fetch();
     return result;
   }
 
   getInnerState() {
-    const {
-      dataModel,
-      stateModel,
-    } = this.getModels();
     if (!this.innerState) {
       this.setInnerState();
-      dataModel .addListenerOnChange(this.setInnerState);
-      stateModel.addListenerOnChange(this.setInnerState);
+      this.dataModel .addListenerOnChange(this.setInnerState);
+      this.stateModel.addListenerOnChange(this.setInnerState);
     }
     return this.innerState;
   }
 
   @autobind
   setInnerState() {
-    const {
-      dataModel,
-      stateModel,
-    } = this.getModels();
     this.innerState = {
-      ...dataModel .get(),
-      ...stateModel.get(),
+      ...this.dataModel .get(),
+      ...this.stateModel.get(),
     };
     return this;
-  }
-
-  getModels() {
-    this.models = this.models || {
-      dataModel  : managerDataModel,
-      stateModel : managerStateModel,
-    };
-    return this.models;
   }
 
   getAct(type) {
