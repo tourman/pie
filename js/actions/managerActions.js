@@ -11,7 +11,7 @@ class ManagerActions {
 
   changeItem(item, state = {}) {
     Dispatcher.dispatch({
-      type: ActionTypes.changeItem,
+      type: 'changeItem',
       data: {
         item,
         state,
@@ -21,25 +21,25 @@ class ManagerActions {
 
   resetItem() {
     Dispatcher.dispatch({
-      type: ActionTypes.resetItem
+      type: 'resetItem'
     });
   }
 
   fetchItem() {
     Dispatcher.dispatch({
-      type: ActionTypes.fetchItem
+      type: 'fetchItem'
     });
   }
 
   focusItem() {
     Dispatcher.dispatch({
-      type: ActionTypes.focusItem
+      type: 'focusItem'
     });
   }
 
   blurItem() {
     Dispatcher.dispatch({
-      type: ActionTypes.blurItem
+      type: 'blurItem'
     });
   }
 }
