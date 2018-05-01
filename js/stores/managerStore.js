@@ -30,7 +30,7 @@ class ManagerStore extends Store {
 
   addListener(...args) {
     const result = super.addListener(...args);
-    this.dataModel.addListenerOnChange((item, options) => this.actions.changeItem({item, options}));
+    this.dataModel.addListenerOnEndRead((item, options) => this.actions.changeItem({item, options}));
     this.dataModel.addListenerOnEndRead(this.actions.endReadItem);
     this.dataModel.fetch();
     return result;
