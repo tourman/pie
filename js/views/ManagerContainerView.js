@@ -5,9 +5,15 @@ import nodeFactory from './nodeFactory';
 
 export default props => {
   const Row = nodeFactory.createRow();
+  const panelLoadingClassName = [
+    'pie-panel-loading__overlap',
+    'pie-panel-loading__overlap_skin_white-static',
+    props.loading ? 'pie-panel-loading__overlap_visible' : 'pie-panel-loading__overlap_hidden',
+  ].join(' ');
   return (
     <div>
-      <div className="panel panel-default">
+      <div className="panel panel-default pie-panel-loading">
+        <div className={panelLoadingClassName}></div>
         <div className="panel-heading">
           {props.title}
         </div>

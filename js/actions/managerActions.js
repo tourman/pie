@@ -28,6 +28,12 @@ class ManagerActions {
     });
   }
 
+  loadItem() {
+    Dispatcher.dispatch({
+      type: ActionTypes.loadItem
+    });
+  }
+
   focusItem() {
     Dispatcher.dispatch({
       type: ActionTypes.focusItem

@@ -30,7 +30,19 @@ class ManagerAct {
 
   @autobind
   fetchItem() {
-    this.dataModel.fetch();
+    this.stateModel.save({
+      loading     : true
+    });
+    this.dataModel.fetch()
+      .then(this.actions.loadItem, this.actions.loadItem)
+    ;
+  }
+
+  @autobind
+  loadItem() {
+    this.stateModel.save({
+      loading     : false
+    });
   }
 
   @autobind
