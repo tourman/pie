@@ -9,37 +9,31 @@ class ManagerActions {
     });
   }
 
-  changeItem(item, state = {}) {
+  changeItem(data) {
     Dispatcher.dispatch({
       type: 'changeItem',
-      data: {
-        item,
-        state,
-      }
+      data: data,
     });
   }
 
-  resetItem() {
+  resetItem(data) {
     Dispatcher.dispatch({
-      type: 'resetItem'
+      type: 'resetItem',
+      data: data,
     });
   }
 
-  fetchItem() {
+  focusItem(data) {
     Dispatcher.dispatch({
-      type: 'fetchItem'
+      type: 'focusItem',
+      data: data,
     });
   }
 
-  focusItem() {
+  blurItem(data) {
     Dispatcher.dispatch({
-      type: 'focusItem'
-    });
-  }
-
-  blurItem() {
-    Dispatcher.dispatch({
-      type: 'blurItem'
+      type: 'blurItem',
+      data: data,
     });
   }
 }
