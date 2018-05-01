@@ -23,6 +23,13 @@ class ManagerActions {
     });
   }
 
+  endReadItem(data) {
+    Dispatcher.dispatch({
+      type: 'endReadItem',
+      data: data,
+    });
+  }
+
   focusItem(data) {
     Dispatcher.dispatch({
       type: 'focusItem',

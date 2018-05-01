@@ -18,16 +18,15 @@ export default localStorageKey => {
       const success = options.success;
       const error   = options.error;
       const promise = new Promise((resolve, reject) => {
-        const promiseOptions = {
-          ...options,
+        Object.assign(options, {
           success : function() {
             setTimeout(() => success.apply(this, arguments));
           },
           error   : function() {
             setTimeout(() => error  .apply(this, arguments));
           },
-        };
-        super.sync(method, model, promiseOptions).then(
+        });
+        super.sync(method, model, options).then(
           function() {
             setTimeout(() => resolve.apply(this, arguments));
           },

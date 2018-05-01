@@ -14,10 +14,28 @@ class Model extends Backbone.Model {
     return result;
   }
 
+  sync(method, model, options) {
+    options.method = method;
+    const result = super.sync(method, model, options);
+    return result;
+  }
+
   addListenerOnChange(callback) {
     this.listenTo(this, 'change', function(model, options) {
       const state = model.get();
       const result = callback.call(this, state, options);
+      return result;
+    });
+    return this;
+  }
+
+  addListenerOnEndRead(callback) {
+    this.listenTo(this, 'sync', function(model, response, options) {
+      let result = null;
+      if (options.method === 'read') {
+        const state = model.get();
+        result = callback.call(this, state, options);
+      }
       return result;
     });
     return this;

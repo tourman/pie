@@ -28,16 +28,23 @@ class ManagerAct {
   }
 
   @autobind
+  endReadItem() {
+    this.stateModel.save({
+      loading     : false,
+    });
+  }
+
+  @autobind
   focusItem() {
     this.stateModel.save({
-      focus       : true
+      focus       : true,
     });
   }
 
   @autobind
   blurItem() {
     this.stateModel.save({
-      focus       : false
+      focus       : false,
     });
   }
 };
