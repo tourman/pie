@@ -3,11 +3,13 @@
 import autobind from 'autobind-decorator';
 import managerDataModel from '../states/managerDataModel';
 import managerStateModel from '../states/managerStateModel';
+import managerActions from '../actions/managerActions';
 
 class ManagerAct {
-  constructor({dataModel, stateModel} = {}) {
+  constructor({dataModel, stateModel, actions} = {}) {
     this.dataModel  = dataModel  || managerDataModel;
     this.stateModel = stateModel || managerStateModel;
+    this.actions    = actions    || managerActions;
   }
 
   @autobind
@@ -19,14 +21,11 @@ class ManagerAct {
 
   @autobind
   resetItem() {
-    this.dataModel .save({
+    this.actions.changeItem({
       description : '',
       rate        : '',
     });
-    this.stateModel.setValidAndBlocked(this.dataModel);
-    this.stateModel.save({
-      focus       : true,
-    });
+    this.actions.focusItem();
   }
 
   @autobind

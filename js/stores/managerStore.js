@@ -10,7 +10,7 @@ class ManagerStore extends Store {
     super(...args);
 
     const models = this.getModels();
-    this.managerAct = new ManagerAct(models);
+    this.managerAct = new ManagerAct({...models, actions: managerActions});
 
     const {dataModel} = this.getModels();
     dataModel.addListenerOnChange(managerActions.changeItem);
