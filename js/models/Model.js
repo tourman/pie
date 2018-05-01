@@ -15,7 +15,11 @@ class Model extends Backbone.Model {
   }
 
   addListenerOnChange(callback) {
-    this.listenTo(this, 'change', callback);
+    this.listenTo(this, 'change', function(model, options) {
+      const state = model.get();
+      const result = callback.call(this, state, options);
+      return result;
+    });
     return this;
   }
 };
