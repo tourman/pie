@@ -13,6 +13,13 @@ class Model extends Backbone.Model {
     }
     return result;
   }
+
+  addListenerOnChange(callback) {
+    this.listenTo(this, 'change', () => {
+      const state = this.get();
+      callback(state);
+    });
+  }
 };
 
 export default Model;

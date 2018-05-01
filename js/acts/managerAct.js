@@ -1,17 +1,20 @@
 'use strict';
 
+import managerDataModel from '../states/managerDataModel';
 import managerStateModel from '../states/managerStateModel';
 
 class ManagerAct {
   changeItem({item}) {
-    managerStateModel.set(item);
+    managerDataModel.set(item);
   }
 
   resetItem() {
-    managerStateModel.set({
-      focus       : true,
+    managerDataModel.set({
       description : '',
       rate        : '',
+    });
+    managerStateModel.set({
+      focus       : true,
     });
   }
 

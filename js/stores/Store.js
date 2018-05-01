@@ -3,23 +3,21 @@ import utils from '../utils/common';
 import StoreToken from './StoreToken';
 
 class Store extends ReduceStore {
-  constructor(dispatcher) {
-    super(dispatcher);
+  constructor(...args) {
+    super(...args);
     this.token = new StoreToken();
   }
 
   getInitialState() {
-    this.model = this.model || this.getModel();
-    this.model.fetch();
-    const initialState = this.model.get();
-    return initialState;
+    const innerState = this.getInnerState();
+    return innerState;
   }
 
   reduce(startingState, action) {
     this.act(action);
     this.afterReduce(action);
-    const state = this.model.get();
-    return state;
+    const innerState = this.getInnerState();
+    return innerState;
   }
 
   act(action) {

@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 import autobind from 'autobind-decorator';
+import utils from '../utils/common';
 
 export default OriginComponent => (class Focus extends Component {
   constructor(...args) {
@@ -9,6 +10,7 @@ export default OriginComponent => (class Focus extends Component {
 
   componentWillReceiveProps(nextProps) {
     this.focusOrBlur(this.props, nextProps);
+    this.needToUpdateComponent = this.doesNeedToUpdateComponent(this.props, nextProps);
   }
 
   shouldComponentUpdate() {
@@ -30,9 +32,12 @@ export default OriginComponent => (class Focus extends Component {
     if (blur) {
       this.blur();
     }
-    if (focus || blur) {
-      this.needToUpdateComponent = false;
-    }
+  }
+
+  doesNeedToUpdateComponent(prevProps = {}, nextProps = {}) {
+    const differentKeys = utils.differentKeys(prevProps, nextProps);
+    const equal = utils.equal(differentKeys, ['focus']);
+    return !equal;
   }
 
   isFocus(prevProps = {}, nextProps = {}) {
