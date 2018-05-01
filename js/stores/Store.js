@@ -26,6 +26,10 @@ class Store extends ReduceStore {
     return this;
   }
 
+  afterReduce() {
+    return this;
+  }
+
   addListener(callback) {
     const token = this.token.get(callback) || super.addListener(() => {
       const state = this.getState();

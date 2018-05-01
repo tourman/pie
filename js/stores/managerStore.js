@@ -2,12 +2,15 @@ import Store from './Store';
 import dispatcher from '../dispatcher';
 import managerDataModel from '../states/managerDataModel';
 import managerStateModel from '../states/managerStateModel';
-import managerAct from '../acts/managerAct';
+import ManagerAct from '../acts/ManagerAct';
 import managerActions from '../actions/managerActions';
 
 class ManagerStore extends Store {
   constructor(...args) {
     super(...args);
+
+    const models = this.getModels();
+    this.managerAct = new ManagerAct(models);
 
     const {dataModel} = this.getModels();
     dataModel.addListenerOnChange(managerActions.changeItem);
@@ -27,29 +30,16 @@ class ManagerStore extends Store {
   }
 
   getModels() {
-    return {
-      dataModel:  managerDataModel,
-      stateModel: managerStateModel,
+    this.models = this.models || {
+      dataModel  : managerDataModel,
+      stateModel : managerStateModel,
     };
+    return this.models;
   }
 
   getAct(type) {
-    const act = managerAct[type] || (() => {});
+    const act = this.managerAct[type] || (() => {});
     return act;
-  }
-
-  afterReduce() {
-    const {
-      dataModel,
-      stateModel,
-    } = this.getModels();
-    const valid = dataModel.isValid();
-    const blocked = dataModel.isBlocked();
-    stateModel.save({
-      valid,
-      blocked,
-    });
-    dataModel.save();
   }
 }
 

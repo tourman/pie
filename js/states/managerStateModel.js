@@ -15,6 +15,16 @@ class ManagerStateModel extends Model {
     };
     return defaults;
   }
+
+  setValidAndBlocked(dataModel) {
+    const valid   = dataModel.isValid();
+    const blocked = dataModel.isBlocked();
+    this.set({
+      valid,
+      blocked,
+    });
+    return this;
+  }
 };
 
 export default new ManagerStateModel();
