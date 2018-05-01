@@ -14,6 +14,15 @@ export default localStorageKey => {
       return defaults;
     }
 
+    fetch(...args) {
+      const promise = new Promise((resolve, reject) => {
+        setTimeout(() => {
+          super.fetch(...args).then(resolve, reject);
+        });
+      });
+      return promise;
+    }
+
     defaultsToExtend() {
       return {};
     }

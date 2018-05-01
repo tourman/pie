@@ -29,6 +29,11 @@ class ManagerAct {
   }
 
   @autobind
+  fetchItem() {
+    this.dataModel.fetch();
+  }
+
+  @autobind
   focusItem() {
     this.stateModel.save({
       focus       : true

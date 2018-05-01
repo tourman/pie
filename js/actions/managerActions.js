@@ -22,6 +22,12 @@ class ManagerActions {
     });
   }
 
+  fetchItem() {
+    Dispatcher.dispatch({
+      type: ActionTypes.fetchItem
+    });
+  }
+
   focusItem() {
     Dispatcher.dispatch({
       type: ActionTypes.focusItem

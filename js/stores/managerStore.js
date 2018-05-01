@@ -4,17 +4,23 @@ import managerDataModel from '../states/managerDataModel';
 import managerStateModel from '../states/managerStateModel';
 import ManagerAct from '../acts/ManagerAct';
 import managerActions from '../actions/managerActions';
+import autobind from 'autobind-decorator';
 
 class ManagerStore extends Store {
   constructor(...args) {
     super(...args);
 
-    const models = this.getModels();
-    this.managerAct = new ManagerAct({...models, actions: managerActions});
+    this.actions = managerActions;
 
+    const models = this.getModels();
+    this.managerAct = new ManagerAct({...models, actions: this.actions});
+  }
+
+  addListener(...args) {
+    const result = super.addListener(...args);
     const {dataModel} = this.getModels();
-    dataModel.addListenerOnChange(managerActions.changeItem);
-    dataModel.fetch();
+    this.actions.fetchItem();
+    dataModel.addListenerOnChange(this.actions.changeItem);
   }
 
   getInnerState() {
@@ -22,11 +28,25 @@ class ManagerStore extends Store {
       dataModel,
       stateModel,
     } = this.getModels();
-    const state = {
+    if (!this.innerState) {
+      this.setInnerState();
+      dataModel .addListenerOnChange(this.setInnerState);
+      stateModel.addListenerOnChange(this.setInnerState);
+    }
+    return this.innerState;
+  }
+
+  @autobind
+  setInnerState() {
+    const {
+      dataModel,
+      stateModel,
+    } = this.getModels();
+    this.innerState = {
       ...dataModel .get(),
       ...stateModel.get(),
     };
-    return state;
+    return this;
   }
 
   getModels() {
