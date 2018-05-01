@@ -22,6 +22,7 @@ class ManagerStore extends Store {
     dataModel.addListenerOnChange((item, options) => this.actions.changeItem({item, options}));
     dataModel.addListenerOnEndRead(this.actions.endReadItem);
     dataModel.fetch();
+    return result;
   }
 
   getInnerState() {
