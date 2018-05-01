@@ -2,7 +2,6 @@ export default {
   changeItem: 'changeItem',
   resetItem: 'resetItem',
   fetchItem: 'fetchItem',
-  loadItem: 'loadItem',
   focusItem: 'focusItem',
   blurItem: 'blurItem',
   REMOVE_ITEM: 'REMOVE_ITEM',

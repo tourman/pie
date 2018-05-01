@@ -13,10 +13,11 @@ class ManagerAct {
   }
 
   @autobind
-  changeItem({item}) {
+  changeItem({item, state: {loading = false}}) {
     this.dataModel .save(item);
-    this.stateModel.setValidAndBlocked(this.dataModel);
-    this.stateModel.save();
+    this.stateModel.setValidAndBlockedAndSave(this.dataModel, {
+      loading
+    });
   }
 
   @autobind
@@ -31,18 +32,9 @@ class ManagerAct {
   @autobind
   fetchItem() {
     this.stateModel.save({
-      loading     : true
+      loading     : true,
     });
-    this.dataModel.fetch()
-      .then(this.actions.loadItem, this.actions.loadItem)
-    ;
-  }
-
-  @autobind
-  loadItem() {
-    this.stateModel.save({
-      loading     : false
-    });
+    this.dataModel.fetch();
   }
 
   @autobind

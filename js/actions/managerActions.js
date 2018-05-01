@@ -9,10 +9,13 @@ class ManagerActions {
     });
   }
 
-  changeItem(item) {
+  changeItem(item, state = {}) {
     Dispatcher.dispatch({
       type: ActionTypes.changeItem,
-      data: {item}
+      data: {
+        item,
+        state,
+      }
     });
   }
 
@@ -25,12 +28,6 @@ class ManagerActions {
   fetchItem() {
     Dispatcher.dispatch({
       type: ActionTypes.fetchItem
-    });
-  }
-
-  loadItem() {
-    Dispatcher.dispatch({
-      type: ActionTypes.loadItem
     });
   }
 

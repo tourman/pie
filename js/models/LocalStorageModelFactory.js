@@ -14,11 +14,27 @@ export default localStorageKey => {
       return defaults;
     }
 
-    fetch(...args) {
+    sync(method, model, options) {
+      const success = options.success;
+      const error   = options.error;
       const promise = new Promise((resolve, reject) => {
-        setTimeout(() => {
-          super.fetch(...args).then(resolve, reject);
-        });
+        const promiseOptions = {
+          ...options,
+          success : function() {
+            setTimeout(() => success.apply(this, arguments));
+          },
+          error   : function() {
+            setTimeout(() => error  .apply(this, arguments));
+          },
+        };
+        super.sync(method, model, promiseOptions).then(
+          function() {
+            setTimeout(() => resolve.apply(this, arguments));
+          },
+          function() {
+            setTimeout(() => reject .apply(this, arguments));
+          },
+        );
       });
       return promise;
     }
