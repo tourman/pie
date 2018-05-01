@@ -17,15 +17,14 @@ class ManagerStateModel extends Model {
     return defaults;
   }
 
-  setValidAndBlockedAndSave(dataModel, state) {
+  saveValidAndBlocked(dataModel) {
     const valid   = dataModel.isValid();
     const blocked = dataModel.isBlocked();
     const stateToSave = {
       valid,
       blocked,
-      ...state,
     };
-    const result = this.set(stateToSave);
+    const result = this.save(stateToSave);
     return result;
   }
 };

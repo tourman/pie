@@ -13,11 +13,9 @@ class ManagerAct {
   }
 
   @autobind
-  changeItem({item, state: {loading = false}}) {
+  changeItem({item}) {
     this.dataModel .save(item);
-    this.stateModel.setValidAndBlockedAndSave(this.dataModel, {
-      loading
-    });
+    this.stateModel.saveValidAndBlocked(this.dataModel);
   }
 
   @autobind

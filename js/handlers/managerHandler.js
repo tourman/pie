@@ -4,16 +4,22 @@ import managerActions from '../actions/managerActions';
 
 const managerHandler = {
   onChangeRate(event) {
+    const item = {
+      rate: event.target.value
+    };
     event.preventDefault();
     managerActions.changeItem({
-      rate: event.target.value
+      item
     });
   },
 
   onChangeDescription(event) {
+    const item = {
+      description: event.target.value
+    };
     event.preventDefault();
     managerActions.changeItem({
-      description: event.target.value
+      item
     });
   },
 
