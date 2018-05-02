@@ -2,15 +2,15 @@ import React, { Component } from 'react';
 import autobind from 'autobind-decorator';
 import ManagerView from '../views/ManagerView';
 
-import storeFactory from 'factories/storeFactory';
-import handlerFactory from 'factories/handlerFactory';
+import globalFactories from 'factories';
 
 class Manager extends Component {
   constructor(props) {
     super(props);
-    this.store = storeFactory.createManagerStore();
+    const factories = props.factories || globalFactories;
+    this.store = factories.store.createManagerStore();
     this.state = this.store.getState();
-    this.handler = handlerFactory.createManagerHandler();
+    this.handler = factories.handler.createManagerHandler();
   }
 
   @autobind
