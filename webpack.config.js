@@ -23,6 +23,11 @@ module.exports = {
       }
     ]
   },
+  resolve: {
+    alias: {
+      factories: path.join(__dirname, '/js/factories/'),
+    },
+  },
   devServer: {
     hot: true,
     inline: true,

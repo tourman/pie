@@ -1,14 +1,16 @@
 import React, { Component } from 'react';
-import managerStore from '../stores/managerStore';
 import autobind from 'autobind-decorator';
 import ManagerView from '../views/ManagerView';
-import managerHandler from '../handlers/managerHandler';
+
+import storeFactory from 'factories/storeFactory';
+import handlerFactory from 'factories/handlerFactory';
 
 class Manager extends Component {
   constructor(props) {
     super(props);
-    this.state = managerStore.getState();
-    this.handler = managerHandler;
+    this.store = storeFactory.createManagerStore();
+    this.state = this.store.getState();
+    this.handler = handlerFactory.createManagerHandler();
   }
 
   @autobind
@@ -17,11 +19,11 @@ class Manager extends Component {
   }
 
   componentDidMount() {
-    managerStore.addListener(this.setState);
+    this.store.addListener(this.setState);
   }
 
   componentWillUnmount() {
-    managerStore.removeListener(this.setState);
+    this.store.removeListener(this.setState);
   }
 
   getProps() {
