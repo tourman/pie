@@ -5,6 +5,7 @@ import managerStateModel from '../states/managerStateModel';
 import ManagerAct from '../acts/ManagerAct';
 import managerActions from '../actions/managerActions';
 import autobind from 'autobind-decorator';
+import managerModel from '../states/managerModel';
 
 class ManagerStore extends Store {
   constructor(...args) {
@@ -26,6 +27,14 @@ class ManagerStore extends Store {
   get managerAct() {
     this._managerAct = this._managerAct || new ManagerAct(this);
     return this._managerAct;
+  }
+
+  get handler() {
+    return this.managerAct;
+  }
+
+  get model() {
+    return managerModel;
   }
 
   getInnerState() {

@@ -14,10 +14,11 @@ class Store extends ReduceStore {
   }
 
   reduce(startingState, action) {
-    this.act(action);
-    this.afterReduce(action);
-    const innerState = this.getInnerState();
-    return innerState;
+    this.handler[action.type](action.data);
+    const endingState = this.model.get();
+    const changed = this.model.isChanged();
+    const resultState = changed ? endingState : startingState;
+    return resultState;
   }
 
   act(action) {

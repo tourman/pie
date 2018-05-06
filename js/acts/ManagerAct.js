@@ -6,16 +6,16 @@ import managerStateModel from '../states/managerStateModel';
 import managerActions from '../actions/managerActions';
 
 class ManagerAct {
-  constructor({dataModel, stateModel, actions} = {}) {
+  constructor({model, dataModel, stateModel, actions} = {}) {
     this.dataModel  = dataModel  || managerDataModel;
     this.stateModel = stateModel || managerStateModel;
     this.actions    = actions    || managerActions;
+    this.model      = model;
   }
 
   @autobind
   changeItem({item}) {
-    this.dataModel .saveEvenInvalid(item);
-    this.stateModel.saveValidAndBlocked(this.dataModel);
+    this.model.set(item);
   }
 
   @autobind
