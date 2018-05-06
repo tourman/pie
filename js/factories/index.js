@@ -3,9 +3,14 @@
 import handler from 'factories/handlerFactory';
 import StoreFactory from 'factories/StoreFactory';
 import ModelFactory from 'factories/ModelFactory';
+import ActionFactory from 'factories/ActionFactory';
 
-export default {
+const factories = {
   handler,
-  store: new StoreFactory(),
-  model: new ModelFactory(),
+  store : new StoreFactory(),
+  model : new ModelFactory(),
+  action: new ActionFactory(),
 };
+
+window.factories = factories;
+export default factories;

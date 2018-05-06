@@ -3,6 +3,7 @@
 import extend from 'lodash/extend';
 import uniq from 'lodash/uniq';
 import flatten from 'lodash/flatten';
+import zipObject from 'lodash/zipObject';
 
 const common = {
   freeze(obj) {
@@ -46,7 +47,9 @@ const common = {
     const differentKeys = common.differentKeys(...objects);
     const equal = !differentKeys.length;
     return equal;
-  }
+  },
+
+  zipObject,
 };
 
 export default common;

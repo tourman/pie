@@ -34,6 +34,7 @@ module.exports = {
         'models',
         'states',
         'views',
+        'utils',
       ];
       var pathList = list.map(function(item) {
         return path.join(__dirname, '/js/' + item);

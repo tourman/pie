@@ -9,13 +9,6 @@ class ManagerActions {
     });
   }
 
-  setItem(data) {
-    Dispatcher.dispatch({
-      type: 'setItem',
-      data: data,
-    });
-  }
-
   changeItem(data) {
     Dispatcher.dispatch({
       type: 'changeItem',
@@ -52,4 +45,5 @@ class ManagerActions {
   }
 }
 
-export default new ManagerActions();
+const managerActions = new ManagerActions();
+export default managerActions;
