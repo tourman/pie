@@ -1,9 +1,11 @@
 'use strict';
 
 import handler from 'factories/handlerFactory';
-import store from 'factories/storeFactory';
+import StoreFactory from 'factories/StoreFactory';
+import ModelFactory from 'factories/ModelFactory';
 
 export default {
   handler,
-  store,
+  store: new StoreFactory(),
+  model: new ModelFactory(),
 };

@@ -1,5 +1,6 @@
 var path = require('path');
 var webpack = require('webpack');
+var zipObject = require('lodash/zipObject');
 
 module.exports = {
   entry: [
@@ -24,9 +25,22 @@ module.exports = {
     ]
   },
   resolve: {
-    alias: {
-      factories: path.join(__dirname, '/js/factories/'),
-    },
+    alias: (function() {
+      var list = [
+        'stores',
+        'actions',
+        'factories',
+        'dispatcher',
+        'models',
+        'states',
+        'views',
+      ];
+      var pathList = list.map(function(item) {
+        return path.join(__dirname, '/js/' + item);
+      });
+      var aliasObj = zipObject(list, pathList);
+      return aliasObj;
+    })(),
   },
   devServer: {
     hot: true,

@@ -1,12 +1,17 @@
 import { ReduceStore } from 'flux/utils';
 import utils from '../utils/common';
 import StoreToken from './StoreToken';
+import factories from 'factories/';
 
 class Store extends ReduceStore {
   constructor(...args) {
     super(...args);
     this.token = new StoreToken();
     this.subscribe();
+  }
+
+  get factories() {
+    return factories;
   }
 
   subscribe() {
