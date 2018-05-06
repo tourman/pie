@@ -1,6 +1,5 @@
 'use strict';
 
-import autobind from 'autobind-decorator';
 import managerDataModel from '../states/managerDataModel';
 import managerStateModel from '../states/managerStateModel';
 import managerActions from '../actions/managerActions';
@@ -10,7 +9,6 @@ class ManagerStoreHandler {
     this.store = store;
   }
 
-  @autobind
   changeItem({itemModel}) {
     const {
       description,
@@ -27,7 +25,6 @@ class ManagerStoreHandler {
     this.store.model.set(state);
   }
 
-  @autobind
   resetItem() {
     this.store.actions.changeItem({
       description : '',
@@ -36,21 +33,18 @@ class ManagerStoreHandler {
     this.store.actions.focusItem();
   }
 
-  @autobind
   endReadItem() {
     this.store.stateModel.save({
       loading     : false,
     });
   }
 
-  @autobind
   focusItem() {
     this.store.stateModel.save({
       focus       : true,
     });
   }
 
-  @autobind
   blurItem() {
     this.store.stateModel.save({
       focus       : false,
