@@ -6,6 +6,10 @@ class Store extends ReduceStore {
   constructor(...args) {
     super(...args);
     this.token = new StoreToken();
+    this.subscribe();
+  }
+
+  subscribe() {
   }
 
   getInitialState() {
@@ -14,7 +18,7 @@ class Store extends ReduceStore {
   }
 
   reduce(startingState, action) {
-    const act = this.handler[action.type] || (() => {});
+    const act = this.handler[action.type] || (() => this.model.set({}));
     const boundAct = act.bind(this.handler);
     boundAct(action.data);
     const endingState = this.model.get();
