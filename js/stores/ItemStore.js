@@ -15,7 +15,8 @@ class ItemStore extends Store {
   }
 
   get handler() {
-    const handler = this.factories.handler.createItemStoreHandler(this);
+    const store = this;
+    const handler = this.factories.handler.createItemStoreHandler({store});
     return handler;
   }
 };

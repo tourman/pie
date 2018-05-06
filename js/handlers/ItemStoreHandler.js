@@ -1,16 +1,16 @@
 'use strict';
 
 class ItemStoreHandler {
-  constructor({model}) {
-    this.model = model;
+  constructor({store}) {
+    this.store = store;
   }
 
   setItem({item}) {
-    this.model.set(item);
+    this.store.model.set(item);
   }
 
   resetItem() {
-    this.model.set({
+    this.store.model.set({
       description : '',
       rate        : '',
     });
