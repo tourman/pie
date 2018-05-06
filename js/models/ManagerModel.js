@@ -5,7 +5,7 @@ import utils from '../utils/common';
 
 const Model = modelFactory('managerState');
 
-class ManagerStateModel extends Model {
+class ManagerModel extends Model {
   defaultsToExtend() {
     const defaults = {
       description : '',
@@ -26,4 +26,4 @@ class ManagerStateModel extends Model {
   }
 };
 
-export default new ManagerStateModel();
+export default ManagerModel;

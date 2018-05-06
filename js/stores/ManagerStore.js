@@ -1,10 +1,8 @@
 import Store from './Store';
-import dispatcher from '../dispatcher';
 import managerDataModel from '../states/managerDataModel';
 import managerStateModel from '../states/managerStateModel';
 import managerActions from '../actions/managerActions';
 import autobind from 'autobind-decorator';
-import managerModel from '../states/managerModel';
 
 class ManagerStore extends Store {
   constructor(...args) {
@@ -34,7 +32,8 @@ class ManagerStore extends Store {
   }
 
   get model() {
-    return managerModel;
+    const model = this.factories.model.createManagerModel();
+    return model;
   }
 
   getInnerState() {
@@ -61,4 +60,4 @@ class ManagerStore extends Store {
   }
 }
 
-export default new ManagerStore(dispatcher);
+export default ManagerStore;

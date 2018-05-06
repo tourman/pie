@@ -1,8 +1,8 @@
 import { EventEmitter } from 'events';
 import Dispatcher from '../dispatcher';
 import ActionTypes from '../constants';
-import managerStore from './managerStore';
 import autobind from 'autobind-decorator';
+import factories from 'factories/';
 
 const CHANGE = 'CHANGE';
 let _listState = [
@@ -41,7 +41,7 @@ class ListStore extends EventEmitter {
   }
 
   _getNewItem() {
-    const frozenItem = managerStore.getState();
+    const frozenItem = factories.store.createManagerStore().getState();
     const item = Object.assign({}, frozenItem);
     return item;
   }

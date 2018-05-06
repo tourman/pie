@@ -1,12 +1,13 @@
 'use strict';
 
 import dispatcher from 'dispatcher/';
-import managerStore from '../stores/managerStore';
 import ItemStore from 'stores/ItemStore';
+import ManagerStore from 'stores/ManagerStore';
 
 class StoreFactory {
   createManagerStore() {
-    return managerStore;
+    this.managerStore = this.managerStore || new ManagerStore(dispatcher);
+    return this.managerStore;
   }
 
   createItemStore() {
