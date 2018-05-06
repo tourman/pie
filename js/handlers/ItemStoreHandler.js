@@ -8,6 +8,13 @@ class ItemStoreHandler {
   setItem({item}) {
     this.model.set(item);
   }
+
+  resetItem() {
+    this.model.set({
+      description : '',
+      rate        : '',
+    });
+  }
 }
 
 export default ItemStoreHandler;

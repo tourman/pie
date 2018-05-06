@@ -25,20 +25,6 @@ class ManagerStoreHandler {
     this.store.model.set(state);
   }
 
-  resetItem() {
-    this.store.actions.changeItem({
-      description : '',
-      rate        : '',
-    });
-    this.store.actions.focusItem();
-  }
-
-  endReadItem() {
-    this.store.stateModel.save({
-      loading     : false,
-    });
-  }
-
   focusItem() {
     this.store.stateModel.save({
       focus       : true,
