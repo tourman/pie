@@ -1,12 +1,13 @@
 'use strict';
 
-import managerHandler from 'handlers/managerHandler';
+import ManagerHandler from 'handlers/ManagerHandler';
 import ItemStoreHandler from 'handlers/ItemStoreHandler';
 import ManagerStoreHandler from 'handlers/ManagerStoreHandler';
 
 class HandlerFactory {
-  createManagerHandler() {
-    return managerHandler;
+  createManagerHandler(...args) {
+    this.managerHandler = this.managerHandler || new ManagerHandler(...args);
+    return this.managerHandler;
   }
 
   createItemStoreHandler(...args) {
