@@ -2,7 +2,6 @@ import Store from './Store';
 import dispatcher from '../dispatcher';
 import managerDataModel from '../states/managerDataModel';
 import managerStateModel from '../states/managerStateModel';
-import ManagerAct from '../acts/ManagerAct';
 import managerActions from '../actions/managerActions';
 import autobind from 'autobind-decorator';
 import managerModel from '../states/managerModel';
@@ -30,7 +29,8 @@ class ManagerStore extends Store {
   }
 
   get handler() {
-    return this.managerAct;
+    const handler = this.factories.handler.createManagerStoreHandler(this);
+    return handler;
   }
 
   get model() {

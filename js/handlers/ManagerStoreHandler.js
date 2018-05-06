@@ -5,7 +5,7 @@ import managerDataModel from '../states/managerDataModel';
 import managerStateModel from '../states/managerStateModel';
 import managerActions from '../actions/managerActions';
 
-class ManagerAct {
+class ManagerStoreHandler {
   constructor({model, dataModel, stateModel, actions, factories} = {}) {
     this.dataModel  = dataModel  || managerDataModel;
     this.stateModel = stateModel || managerStateModel;
@@ -56,4 +56,4 @@ class ManagerAct {
   }
 };
 
-export default ManagerAct;
+export default ManagerStoreHandler;
