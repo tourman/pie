@@ -9,6 +9,13 @@ class ManagerActions {
     });
   }
 
+  setItem(data) {
+    Dispatcher.dispatch({
+      type: 'setItem',
+      data: data,
+    });
+  }
+
   changeItem(data) {
     Dispatcher.dispatch({
       type: 'changeItem',

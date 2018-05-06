@@ -9,6 +9,7 @@ class Manager extends Component {
     super(props);
     const factories = props.factories || globalFactories;
     this.store = factories.store.createManagerStore();
+    this.itemStore = factories.store.createItemStore();
     this.state = this.store.getState();
     this.handler = factories.handler.createManagerHandler();
   }
