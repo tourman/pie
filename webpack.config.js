@@ -33,6 +33,7 @@ module.exports = {
         'dispatcher',
         'models',
         'states',
+        'handlers',
         'views',
         'utils',
       ];

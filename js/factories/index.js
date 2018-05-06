@@ -1,15 +1,15 @@
 'use strict';
 
-import handler from 'factories/handlerFactory';
 import StoreFactory from 'factories/StoreFactory';
 import ModelFactory from 'factories/ModelFactory';
 import ActionFactory from 'factories/ActionFactory';
+import HandlerFactory from 'factories/HandlerFactory';
 
 const factories = {
-  handler,
-  store : new StoreFactory(),
-  model : new ModelFactory(),
-  action: new ActionFactory(),
+  store  : new StoreFactory(),
+  model  : new ModelFactory(),
+  action : new ActionFactory(),
+  handler: new HandlerFactory(),
 };
 
 window.factories = factories;
