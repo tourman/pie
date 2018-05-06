@@ -27,7 +27,8 @@ class ManagerStore extends Store {
   }
 
   get handler() {
-    const handler = this.factories.handler.createManagerStoreHandler(this);
+    const store = this;
+    const handler = this.factories.handler.createManagerStoreHandler({store});
     return handler;
   }
 

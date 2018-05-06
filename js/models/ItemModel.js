@@ -25,6 +25,18 @@ class ItemModel extends Model {
     const validationString = valid ? '' : 'Rate is not valid';
     return validationString;
   }
+
+  isReady() {
+    const {
+      description,
+      rate,
+    } = this.get();
+    const readyDescription = description.length;
+    const readyRate = rate.length;
+    const valid = this.isValid();
+    const ready = readyDescription && readyRate && valid;
+    return ready;
+  }
 };
 
 export default ItemModel;

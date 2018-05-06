@@ -6,51 +6,53 @@ import managerStateModel from '../states/managerStateModel';
 import managerActions from '../actions/managerActions';
 
 class ManagerStoreHandler {
-  constructor({model, dataModel, stateModel, actions, factories} = {}) {
-    this.dataModel  = dataModel  || managerDataModel;
-    this.stateModel = stateModel || managerStateModel;
-    this.actions    = actions    || managerActions;
-    this.model      = model;
-    this.factories  = factories;
+  constructor({store}) {
+    this.store = store;
   }
 
   @autobind
-  changeItem({item}) {
-    const itemModel = this.factories.model.createItemModel();
+  changeItem({itemModel}) {
+    const {
+      description,
+      rate,
+    } = itemModel.get();
     const valid = itemModel.isValid();
+    const blocked = !itemModel.isReady();
     const state = {
-      ...item,
-      valid
+      description,
+      rate,
+      valid,
+      blocked,
     };
-    this.model.set(state);
+    this.store.model.set(state);
   }
 
   @autobind
   resetItem() {
-    this.actions.changeItem({
+    this.store.actions.changeItem({
       description : '',
       rate        : '',
     });
-    this.actions.focusItem();
+    this.store.actions.focusItem();
   }
 
   @autobind
   endReadItem() {
-    this.stateModel.save({
+    this.store.stateModel.save({
       loading     : false,
     });
   }
 
   @autobind
   focusItem() {
-    this.stateModel.save({
+    this.store.stateModel.save({
       focus       : true,
     });
   }
 
   @autobind
   blurItem() {
-    this.stateModel.save({
+    this.store.stateModel.save({
       focus       : false,
     });
   }
