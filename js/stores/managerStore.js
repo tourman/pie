@@ -28,14 +28,6 @@ class ManagerStore extends Store {
     return this._managerAct;
   }
 
-  addListener(...args) {
-    const result = super.addListener(...args);
-    this.dataModel.addListenerOnEndRead((item, options) => this.actions.changeItem({item, options}));
-    this.dataModel.addListenerOnEndRead(this.actions.endReadItem);
-    this.dataModel.fetch();
-    return result;
-  }
-
   getInnerState() {
     if (!this.innerState) {
       this.setInnerState();

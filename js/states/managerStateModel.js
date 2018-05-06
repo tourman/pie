@@ -12,7 +12,7 @@ class ManagerStateModel extends Model {
       valid       : true,
       focus       : true,
       blocked     : true,
-      loading     : true,
+      loading     : false,
     };
     return defaults;
   }

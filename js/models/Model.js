@@ -39,18 +39,6 @@ class Model extends Backbone.Model {
     });
     return this;
   }
-
-  addListenerOnEndRead(callback) {
-    this.listenTo(this, 'sync', function(model, response, options) {
-      let result = null;
-      if (options.method === 'read') {
-        const state = model.get();
-        result = callback.call(this, state, options);
-      }
-      return result;
-    });
-    return this;
-  }
 };
 
 export default Model;
