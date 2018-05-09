@@ -25,6 +25,13 @@ class ManagerStoreHandler {
     this.store.model.set(state);
   }
 
+  syncItem() {
+    const state = {
+      loading: false
+    };
+    this.store.model.set(state);
+  }
+
   addItem() {
     console.warn('addItem need to be completed');
   }

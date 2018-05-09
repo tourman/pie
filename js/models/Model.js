@@ -35,6 +35,11 @@ class Model extends Backbone.Model {
     this.listenTo(this, 'change', callback);
     return this;
   }
+
+  addListenerOnSync(callback) {
+    this.listenTo(this, 'sync', callback);
+    return this;
+  }
 };
 
 export default Model;

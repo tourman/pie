@@ -14,7 +14,7 @@ class ManagerModel extends Model {
       valid       : true,
       focus       : true,
       blocked     : true,
-      loading     : false,
+      loading     : true,
     };
     return defaults;
   }

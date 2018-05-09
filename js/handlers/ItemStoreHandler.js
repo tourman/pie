@@ -15,6 +15,10 @@ class ItemStoreHandler {
       rate        : '',
     });
   }
+
+  mountManager() {
+    this.store.model.fetch();
+  }
 }
 
 export default ItemStoreHandler;

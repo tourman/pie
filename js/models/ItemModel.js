@@ -37,6 +37,28 @@ class ItemModel extends Model {
     const ready = readyDescription && readyRate && valid;
     return ready;
   }
+
+  sync(method, ...args) {
+    const fn = this[method] || (() => {});
+    let result = fn.apply(this, args);
+    result = result || Promise.resolve();
+    return result;
+  }
+
+  read(model, options) {
+    return new Promise(resolve => {
+      const success = resp => {
+        resolve(resp);
+        options.success(resp);
+      };
+      setTimeout(() => {
+        success({
+          description : 'test',
+          rate        : '18',
+        });
+      }, 1500);
+    });
+  }
 };
 
 export default ItemModel;
