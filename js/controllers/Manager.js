@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import autobind from 'autobind-decorator';
-import ManagerView from '../views/ManagerView';
+import DebouncedManagerView from 'views/DebouncedManagerView';
 
 import factories from 'factories/';
 
@@ -39,7 +39,7 @@ class Manager extends Component {
 
   render() {
     const props = this.getProps();
-    return <ManagerView {...props} />
+    return <DebouncedManagerView {...props} />
   }
 }
 
