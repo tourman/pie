@@ -25,6 +25,10 @@ class ManagerStoreHandler {
     this.store.model.set(state);
   }
 
+  addItem() {
+    console.warn('addItem need to be completed');
+  }
+
   focusItem() {
     this.store.stateModel.save({
       focus       : true,

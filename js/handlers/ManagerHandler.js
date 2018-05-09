@@ -4,9 +4,10 @@ import factories from 'factories/';
 
 class ManagerHandler {
   constructor() {
+    this.factories = factories;
     Object.getOwnPropertyNames(this.constructor.prototype)
       .filter(name => /^on/.test(name))
-      .map(name => this[name] = this[name])
+      .map(name => this[name] = this[name].bind(this))
     ;
   }
 
@@ -14,7 +15,7 @@ class ManagerHandler {
     const item = {
       rate: event.target.value
     };
-    const setItem = factories.action.createAction('setItem');
+    const setItem = this.factories.action.createAction('setItem');
     event.preventDefault();
     setItem({
       item
@@ -25,7 +26,7 @@ class ManagerHandler {
     const item = {
       description: event.target.value
     };
-    const setItem = factories.action.createAction('setItem');
+    const setItem = this.factories.action.createAction('setItem');
     event.preventDefault();
     setItem({
       item
@@ -33,9 +34,11 @@ class ManagerHandler {
   }
 
   onSubmit(event) {
+    const addItem   = this.factories.action.createAction('addItem');
+    const resetItem = this.factories.action.createAction('resetItem');
     event.preventDefault();
-    managerActions.addNewItem();
-    managerActions.resetItem();
+    addItem();
+    resetItem();
   }
 
   onFocusDescription() {

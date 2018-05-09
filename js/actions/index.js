@@ -1,6 +1,8 @@
 'use strict';
 
 export default [
-  'setItem',
+     'setItem',
   'changeItem',
+   'resetItem',
+     'addItem',
 ];
