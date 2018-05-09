@@ -25,9 +25,9 @@ class ManagerStoreHandler {
     this.store.model.set(state);
   }
 
-  syncItem() {
+  endReadItem() {
     const state = {
-      loading: false
+      loading     : false,
     };
     this.store.model.set(state);
   }

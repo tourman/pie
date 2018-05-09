@@ -5,7 +5,7 @@ export default [
     'changeItem',
      'resetItem',
        'addItem',
-      'syncItem',
+   'endReadItem',
 
   'mountManager',
 ];

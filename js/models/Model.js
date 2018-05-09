@@ -25,7 +25,7 @@ class Model extends Backbone.Model {
     return result;
   }
 
-  sync(method, model, options) {
+  sync(method, model, options = {}) {
     options.method = method;
     const result = super.sync(method, model, options);
     return result;
@@ -36,8 +36,13 @@ class Model extends Backbone.Model {
     return this;
   }
 
-  addListenerOnSync(callback) {
-    this.listenTo(this, 'sync', callback);
+  addListenerOnEndRead(callback) {
+    this.listenTo(this, 'sync', (model, resp, options) => {
+      const read = options.method === 'read';
+      if (read) {
+        callback(model, resp, options);
+      }
+    });
     return this;
   }
 };

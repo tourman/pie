@@ -6,10 +6,10 @@ import managerActions from '../actions/managerActions';
 
 class ItemStore extends Store {
   subscribe() {
-    const changeItem = this.factories.action.createAction('changeItem');
-    const   syncItem = this.factories.action.createAction(  'syncItem');
-    this.model.addListenerOnChange(itemModel => changeItem({itemModel}));
-    this.model.addListenerOnSync  (syncItem);
+    const  changeItem = this.factories.action.createAction('changeItem');
+    const endReadItem = this.factories.action.createAction('endReadItem');
+    this.model.addListenerOnChange (itemModel => changeItem({itemModel}));
+    this.model.addListenerOnEndRead(endReadItem);
   }
 
   get model() {

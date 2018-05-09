@@ -38,9 +38,10 @@ class ItemModel extends Model {
     return ready;
   }
 
-  sync(method, ...args) {
+  sync(method, model, options) {
     const fn = this[method] || (() => {});
-    let result = fn.apply(this, args);
+    options.method = method;
+    let result = fn.call(this, model, options);
     result = result || Promise.resolve();
     return result;
   }
