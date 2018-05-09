@@ -14,8 +14,9 @@ class ManagerHandler {
     const item = {
       rate: event.target.value
     };
+    const setItem = factories.action.createAction('setItem');
     event.preventDefault();
-    factories.action.createAction('changeItem')({
+    setItem({
       item
     });
   }
@@ -24,8 +25,9 @@ class ManagerHandler {
     const item = {
       description: event.target.value
     };
+    const setItem = factories.action.createAction('setItem');
     event.preventDefault();
-    factories.action.createAction('changeItem')({
+    setItem({
       item
     });
   }
@@ -37,11 +39,13 @@ class ManagerHandler {
   }
 
   onFocusDescription() {
-    managerActions.focusItem();
+    //managerActions.focusItem();
+    console.warn('onFocusDescription needs to be completed');
   }
 
   onBlurDescription() {
-    managerActions.blurItem();
+    //managerActions.blurItem();
+    console.warn('onBlurDescription needs to be completed');
   }
 };
 

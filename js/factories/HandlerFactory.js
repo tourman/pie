@@ -16,7 +16,7 @@ class HandlerFactory {
   }
 
   createManagerStoreHandler(...args) {
-    this.managerStoreHandler = this.managerHandler || new ManagerStoreHandler(...args);
+    this.managerStoreHandler = this.managerStoreHandler || new ManagerStoreHandler(...args);
     return this.managerStoreHandler;
   }
 };

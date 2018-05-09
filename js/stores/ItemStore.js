@@ -6,7 +6,8 @@ import managerActions from '../actions/managerActions';
 
 class ItemStore extends Store {
   subscribe() {
-    this.model.addListenerOnChange(itemModel => managerActions.changeItem({itemModel}));
+    const changeItem = this.factories.action.createAction('changeItem');
+    this.model.addListenerOnChange(itemModel => changeItem({itemModel}));
   }
 
   get model() {
